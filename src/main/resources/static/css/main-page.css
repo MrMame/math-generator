@@ -58,6 +58,20 @@
 
 
 
+.inputLeft{
+    display: inline;
+    margin:10px;
+}
+.inputRight{
+    display: inline;
+    margin:10px;
+}
+.inputForm{
+    display:flex;
+}
+.inputFormLabel{
+    margin:0px;
+}
 
 .redBackg{
     background-color:red;
