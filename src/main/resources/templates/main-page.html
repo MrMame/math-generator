@@ -1,0 +1,19 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/demo.css}"/>
+    <title>Übungsaufgaben</title>
+</head>
+<body>
+    <p class="standard" th:text="'Das sind die Übungsaufgaben für den' + ${theDate}" ></p>
+    <p class="standard" th:text="#{text.welcome}" ></p>
+
+    <form action="#" th:action="@{/}" th:object="${theFormData}" method="post">
+        <p>Anzahl der Aufgaben: <input type="text" th:field="*{numberOfExercises}" ></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" ></p>
+    </form>
+
+</body>
+</html>

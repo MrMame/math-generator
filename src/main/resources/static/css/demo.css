@@ -1,0 +1,17 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+.standard{
+    font-style:italic;
+    color:green;
+}
+
+.exercise{
+    font-family:'Courier New', Arial;
+}
+
+.exercisePack{
+    background-color: coral;
+}
