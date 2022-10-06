@@ -1,0 +1,76 @@
+#mainContainer{
+    display: grid;
+
+    grid-template-columns: [PageLeftColLine] 10px [sec-col-line] 10px [ContentLeftColLine] auto [PageCenterColLine] auto [ContentRightColLine] 10px [fifth-col-line] 10px [PageRightColLine];
+    grid-template-rows: [first-row-line] 25% [sec-row-line] 50% [third-row-line] 25% [last-row-line];
+
+}
+
+
+.mainHead{
+    grid-column-start: ContentLeftColLine;
+    grid-column-end: ContentRightColLine;
+    grid-row-start: first-row-line;
+    grid-row-end: sec-row-line;
+
+    display: grid;
+    justify-content:center;
+
+}
+
+.mainBodyLeft{
+    grid-column-start: ContentLeftColLine;
+    grid-column-end: PageCenterColLine;
+    grid-row-start: 2;
+    grid-row-end: 3;
+
+   padding: 10px;
+   margin: 20px;
+
+   display:grid;
+   justify-content:right;
+
+}
+.mainBodyRight{
+    grid-column-start: PageCenterColLine;
+    grid-column-end: ContentRightColLine;
+    grid-row-start: 2;
+    grid-row-end: 3;
+
+    padding: 10px;
+    margin: 20px;
+
+    display: grid;
+    justify-content:left;
+}
+
+
+.mainFooter{
+    grid-column-start: ContentLeftColLine;
+   grid-column-end: ContentRightColLine;
+   grid-row-start: 3;
+   grid-row-end: 4;
+
+    display: grid;
+    justify-content:center;
+
+}
+
+
+
+
+.redBackg{
+    background-color:red;
+}
+
+.blueBackg{
+    background-color:blue;
+}
+
+.greenBackg{
+    background-color:green;
+}
+
+.whiteBackg{
+    background-color:white;
+}
