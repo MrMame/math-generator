@@ -3,17 +3,52 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/css/demo.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main-page.css}"/>
     <title>Übungsaufgaben</title>
 </head>
 <body>
-    <p class="standard" th:text="'Das sind die Übungsaufgaben für den' + ${theDate}" ></p>
-    <p class="standard" th:text="#{text.welcome}" ></p>
+<div id="mainContainer">
+    <div class="mainHead whiteBackg">
+        <img src="" th:src="@{/images/mathe-prinz-headline.svg}" />
+        <p class="standard"> Mathematik-Aufgabenblätter selbst erstellen</p>
+    </div>
 
-    <form action="#" th:action="@{/}" th:object="${theFormData}" method="post">
-        <p>Anzahl der Aufgaben: <input type="text" th:field="*{numberOfExercises}" ></p>
-        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" ></p>
-    </form>
+    <div class="mainBodyLeft whiteBackg">
+        <form class="inputForm" action="#" th:action="@{/}" th:object="${theFormData}" method="post">
+            <div class="inputLeft">
+                <input type="checkbox" id="add" name="calcType1" value="add">
+                <label for="add">(+)</label><br>
+                <input type="checkbox" id="sub" name="calcType2" value="sub">
+                <label for="sub">(-)</label><br>
+                <input type="checkbox" id="multi" name="calcType3" value="multi">
+                <label for="multi"> (x)</label><br>
+                <input type="checkbox" id="div" name="calcType4" value="div">
+                <label for="div"> (/)</label><br><br>
+            </div>
+            <div class="inputRight">
+                <p class="inputFormLabel" >Anzahl der Aufgaben: <input type="text" th:field="*{numberOfExercises}" ></p>
+                <p class="inputFormLabel" >Zahlenbereich der Rechnung: <input type="text" th:field="*{exercisesNumberRange}" ></p>
+                <p class="inputFormLabel" >Aufgaben in einem Paket: <input type="text" th:field="*{exercisesPacketSize}" ></p>
+                <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" ></p>
+            </div>
+
+        </form>
+    </div>
+    <div class="mainBodyRight whiteBackg" >
+        <img src="" th:src="@{/images/mathe-prinz-zauberstab.svg}" />
+    </div>
+
+    <div class="mainFooter whiteBackgr">
+        <p>Markus Meinhard@server-121.de</p>
+
+    </div>
+
+
+
+
+
+</div>
+
 
 </body>
 </html>
