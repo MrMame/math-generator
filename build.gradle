@@ -22,3 +22,10 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+tasks.bootJar {
+	archiveBaseName.set("mathegenerator")
+	mainClass.set("de.mame.mathegenerator.MatheGeneratorApplication")
+	archiveVersion.set("1.0-RELEASE")
+	launchScript()
+}
