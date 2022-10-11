@@ -1,5 +1,7 @@
 package de.mame.mathegenerator.mainPage.model.mathGenerators;
 
+import de.mame.mathegenerator.mainPage.model.datas.Exercise;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -42,12 +44,12 @@ public class AdditionMathGenerator
     }
 
     @Override
-    public List<String> createExercises() {
+    public List<Exercise> createExercises() {
         // Check necessary parameters
         if(this.numberRangeStart == null){throw new IllegalArgumentException();}
         if(this.numberRangeEnd == null){throw new IllegalArgumentException();}
         if(this.numberOfExercises == null){throw new IllegalArgumentException();}
-        if(this.numberOfExercises <= 0){return new ArrayList<String>(); }
+        if(this.numberOfExercises <= 0){return new ArrayList<Exercise>(); }
         if(this.numberRangeEnd < this.numberRangeStart){
             // switch start/end if start has higher value than beginning
             Integer tmp = this.numberRangeEnd;
@@ -58,8 +60,8 @@ public class AdditionMathGenerator
         return createListOfExercises();
     }
 
-    private List<String> createListOfExercises() {
-        List<String> theExercises = new ArrayList<String>();
+    private List<Exercise> createListOfExercises() {
+        List<Exercise> theExercises = new ArrayList<Exercise>();
 
         Random theRand = new Random();
 
@@ -75,11 +77,11 @@ public class AdditionMathGenerator
 
             result = numA + numB;
 
-            theExercises.add(numA.toString() +
+            theExercises.add(new Exercise(numA.toString() +
                              " + " +
                              numB.toString() +
                              " = " +
-                             result.toString());
+                             result.toString()));
         }
         return theExercises;
     }

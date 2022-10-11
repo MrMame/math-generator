@@ -14,13 +14,7 @@
        th:text="${exercise} + 'iterstate: ' + ${iterState.count}" class="exercise" >dummy</p>
 -->
     <th:block th:each="exercise,iterState : ${theExercises}">
-        <div th:if="${(iterState.count % 5) == 0}">
-            <p th:text="${theExercises[iterState.count+1]}" class="exercise" >dummy</p>
-            <p th:text="${theExercises[iterState.count+2]}" class="exercise" >dummy</p>
-            <p th:text="${theExercises[iterState.count+3]}" class="exercise" >dummy</p>
-            <p th:text="${theExercises[iterState.count+4]}" class="exercise" >dummy</p>
-            <p th:text="${theExercises[iterState.count+5]}" class="exercise" >dummy</p>
-        </div>
+        <p th:text="${exercise.getValue()}" class="exercise" >dummy</p>
     </th:block>
 
     <!--
