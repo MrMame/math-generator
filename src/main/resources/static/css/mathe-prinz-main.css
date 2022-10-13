@@ -1,0 +1,110 @@
+
+/* Setup Responsive Design*/
+*{
+    box-sizing: border-box;
+    padding:0px;
+    margin:0px;
+}
+[class*="col-"]{
+    float:left;
+    padding: 15px;
+    /* border:1px solid red; */
+}
+.row::after{
+    content:"";
+    clear:both;
+    display:table;
+}
+
+
+/* Mobile First Layout*/
+.hideIfMobile{display: none;}
+[class*="col-"]{width:100%}
+
+
+/* Small Mobile Devices*/
+@media only screen  and (max-width:600px){
+    .col-mobile-1 {width: 8.33%;}
+    .col-mobile-2 {width: 16.66%;}
+    .col-mobile-3 {width: 25%;}
+    .col-mobile-4 {width: 33.33%;}
+    .col-mobile-5 {width: 41.66%;}
+    .col-mobile-6 {width: 50%;}
+    .col-mobile-7 {width: 58.33%;}
+    .col-mobile-8 {width: 66.66%;}
+    .col-mobile-9 {width: 75%;}
+    .col-mobile-10{width: 83.33%;}
+    .col-mobile-11{width: 91.66%;}
+    .col-mobile-12{width: 100%;}
+
+    .hideIfMobile{display: none;}
+}
+
+/* Desktops, Laptops and Tablets */
+@media only screen  and (min-width:600px){
+    .col-mid-1 {width: 8.33%;}
+    .col-mid-2 {width: 16.66%;}
+    .col-mid-3 {width: 25%;}
+    .col-mid-4 {width: 33.33%;}
+    .col-mid-5 {width: 41.66%;}
+    .col-mid-6 {width: 50%;}
+    .col-mid-7 {width: 58.33%;}
+    .col-mid-8 {width: 66.66%;}
+    .col-mid-9 {width: 75%;}
+    .col-mid-10{width: 83.33%;}
+    .col-mid-11{width: 91.66%;}
+    .col-mid-12{width: 100%;}
+
+    .hideIfMobile{display: table;}
+}
+
+
+/* Desktops, Laptops and Tablets */
+@media only screen  and (min-width:900px){
+    .col-wide-1 {width: 8.33%;}
+    .col-wide-2 {width: 16.66%;}
+    .col-wide-3 {width: 25%;}
+    .col-wide-4 {width: 33.33%;}
+    .col-wide-5 {width: 41.66%;}
+    .col-wide-6 {width: 50%;}
+    .col-wide-7 {width: 58.33%;}
+    .col-wide-8 {width: 66.66%;}
+    .col-wide-9 {width: 75%;}
+    .col-wide-10{width: 83.33%;}
+    .col-wide-11{width: 91.66%;}
+    .col-wide-12{width: 100%;}
+
+    .hideIfMobile{display: table;}
+}
+
+
+/* Images resizable */
+.resize-smaller-not-bigger{
+    max-width: 100%;
+    height: auto;
+}
+
+.horizontal-center{
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    width:fit-content;
+}
+
+
+.full-width{
+    width:100%;
+}
+
+.text-center{
+    display:flex;
+    align-items:center;
+}
+
+/* COLORS */
+.background-color-primary{
+    background-color: white;
+}
+.background-color-secondary{
+    background-color: antiquewhite;
+}
