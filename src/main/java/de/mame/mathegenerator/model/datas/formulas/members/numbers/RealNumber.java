@@ -2,23 +2,35 @@ package de.mame.mathegenerator.model.datas.formulas.members.numbers;
 
 public class RealNumber implements Number{
 
-    double _value;
+    Double _doubleValue;
+    boolean _isInteger=false;
 
-    public RealNumber(double value) {
-        this._value = value;
+
+    public RealNumber(Double value) {
+        this._doubleValue = value;
+    }
+    public RealNumber(Integer value) {
+        this._doubleValue = value.doubleValue();
+        this._isInteger = true;
     }
 
+
     @Override
-    public double GetValue() {
-        return this._value;
+    public Double GetValue() {
+        return this._doubleValue;
     }
     @Override
-    public void SetValue(double value) {
-        this._value = value;
+    public void SetValue(Double value) {
+        this._doubleValue = value;
     }
 
     @Override
     public String GetCharacter() {
-        return String.valueOf(this._value);
+        if(this._isInteger){
+            return String.valueOf(this._doubleValue.intValue());
+        }else{
+            return String.valueOf(this._doubleValue);
+        }
+
     }
 }
