@@ -13,8 +13,8 @@
     <p th:each="exercise,iterState : ${theGenerator.createExercises()}"
        th:text="${exercise} + 'iterstate: ' + ${iterState.count}" class="exercise" >dummy</p>
 -->
-    <th:block th:each="exercise,iterState : ${theExercises}">
-        <p th:text="${exercise.getValue()}" class="exercise" >dummy</p>
+    <th:block th:each="formula,iterState : ${theFormulas}">
+        <p th:text="${formula.toString()}" class="exercise" >dummy</p>
     </th:block>
 
     <!--

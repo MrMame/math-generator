@@ -1,4 +1,4 @@
-package de.mame.mathegenerator.mainPage.model.datas;
+package de.mame.mathegenerator.model.datas;
 
 public class MainFormData {
     Integer numberOfExercises;

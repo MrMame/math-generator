@@ -1,6 +1,6 @@
-package de.mame.mathegenerator.mainPage.model.mathGenerators;
+package de.mame.mathegenerator.model.mathGenerators;
 
-import de.mame.mathegenerator.mainPage.model.datas.Exercise;
+import de.mame.mathegenerator.model.datas.formulas.Formula;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public interface MathGenerator {
     void setNumberRangeEnd(Integer endValue);
     Integer getNumberRangeEnd();
 
-    List<Exercise> createExercises();
+    List<Formula> createExercises();
 
 
 

@@ -1,6 +1,9 @@
-package de.mame.mathegenerator.mainPage.model.mathGenerators;
+package de.mame.mathegenerator.model.mathGenerators;
 
-import de.mame.mathegenerator.mainPage.model.datas.Exercise;
+import de.mame.mathegenerator.model.datas.formulas.Formula;
+import de.mame.mathegenerator.model.datas.formulas.members.mathoperators.AddMathOperator;
+import de.mame.mathegenerator.model.datas.formulas.members.mathoperators.EqualsMathOperator;
+import de.mame.mathegenerator.model.datas.formulas.members.numbers.RealNumber;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,12 +47,12 @@ public class AdditionMathGenerator
     }
 
     @Override
-    public List<Exercise> createExercises() {
+    public List<Formula> createExercises() {
         // Check necessary parameters
         if(this.numberRangeStart == null){throw new IllegalArgumentException();}
         if(this.numberRangeEnd == null){throw new IllegalArgumentException();}
         if(this.numberOfExercises == null){throw new IllegalArgumentException();}
-        if(this.numberOfExercises <= 0){return new ArrayList<Exercise>(); }
+        if(this.numberOfExercises <= 0){return new ArrayList<Formula>(); }
         if(this.numberRangeEnd < this.numberRangeStart){
             // switch start/end if start has higher value than beginning
             Integer tmp = this.numberRangeEnd;
@@ -57,17 +60,20 @@ public class AdditionMathGenerator
             this.numberRangeStart = tmp;
         }
         // create list of string
-        return createListOfExercises();
+        return createListOfFormulas();
     }
 
-    private List<Exercise> createListOfExercises() {
-        List<Exercise> theExercises = new ArrayList<Exercise>();
+    private List<Formula> createListOfFormulas() {
+        List<Formula> theFormulas = new ArrayList<Formula>();
 
         Random theRand = new Random();
 
         Integer numA;
         Integer numB;
         Integer result;
+        AddMathOperator theAddMathOperator = new AddMathOperator();
+        EqualsMathOperator theEqualMathOperator = new EqualsMathOperator();
+
 
         for(Integer i = 0;i<this.numberOfExercises;i++){
             // get the first number inside the range
@@ -77,12 +83,25 @@ public class AdditionMathGenerator
 
             result = numA + numB;
 
-            theExercises.add(new Exercise(numA.toString() +
+            /*
+            theFormulas.add(new Formula(numA.toString() +
                              " + " +
                              numB.toString() +
                              " = " +
                              result.toString()));
+            */
+
+            Formula theFormula = new Formula();
+            theFormula.AddFormulaMember(new RealNumber(numA));
+            theFormula.AddFormulaMember(theAddMathOperator);
+            theFormula.AddFormulaMember(new RealNumber(numB));
+            theFormula.AddFormulaMember(theEqualMathOperator);
+            theFormula.AddFormulaMember(new RealNumber(result));
+
+            theFormulas.add(theFormula);
+
+
         }
-        return theExercises;
+        return theFormulas;
     }
 }

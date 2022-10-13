@@ -1,7 +1,7 @@
 package de.mame.mathegenerator.mainPage;
 
-import de.mame.mathegenerator.mainPage.model.datas.MainFormData;
-import de.mame.mathegenerator.mainPage.model.mathGenerators.AdditionMathGenerator;
+import de.mame.mathegenerator.model.datas.MainFormData;
+import de.mame.mathegenerator.model.mathGenerators.AdditionMathGenerator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +32,7 @@ public class MainController {
         theGenerator.setNumberRangeEnd(100);
         theGenerator.setNumberOfExercises(theFormData.getNumberOfExercises());
 
-        model.addAttribute("theExercises", theGenerator.createExercises());
+        model.addAttribute("theFormulas", theGenerator.createExercises());
         model.addAttribute("theGenerator",theGenerator);
 
         return "result-page";
