@@ -1,5 +1,7 @@
 
-/* Setup Responsive Design*/
+/* ------------------------------------------
+Setup Responsive Design
+------------------------------------------*/
 *{
     box-sizing: border-box;
     padding:0px;
@@ -78,7 +80,9 @@
 }
 
 
-/* Images resizable */
+/* ------------------------------------------
+Images resizable 
+------------------------------------------*/
 .resize-smaller-not-bigger{
     max-width: 100%;
     height: auto;
@@ -101,10 +105,25 @@
     align-items:center;
 }
 
-/* COLORS */
+
+
+/* ------------------------------------------
+COLORS 
+------------------------------------------*/
+
 .background-color-primary{
     background-color: white;
 }
 .background-color-secondary{
     background-color: antiquewhite;
+}
+
+
+
+/* ------------------------------------------
+ID-Definitions 
+------------------------------------------*/
+#operationCheckboxes{
+    display:flex;
+    justify-content: space-between;
 }
