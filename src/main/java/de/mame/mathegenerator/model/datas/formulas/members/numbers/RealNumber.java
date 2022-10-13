@@ -2,6 +2,8 @@ package de.mame.mathegenerator.model.datas.formulas.members.numbers;
 
 public class RealNumber implements Number{
 
+
+    private static final String FORMAT_STRING = "%3s";  // Decimal numbers will be 3 characters
     Double _doubleValue;
     boolean _isInteger=false;
 
@@ -27,9 +29,9 @@ public class RealNumber implements Number{
     @Override
     public String GetCharacter() {
         if(this._isInteger){
-            return String.valueOf(this._doubleValue.intValue());
+            return String.format(FORMAT_STRING, String.valueOf(this._doubleValue.intValue()));
         }else{
-            return String.valueOf(this._doubleValue);
+            return String.format(FORMAT_STRING, String.valueOf(this._doubleValue));
         }
 
     }
