@@ -14,7 +14,7 @@
        th:text="${exercise} + 'iterstate: ' + ${iterState.count}" class="exercise" >dummy</p>
 -->
     <th:block th:each="formula,iterState : ${theFormulas}">
-        <p th:text="${formula.toString()}" class="exercise" >dummy</p>
+        <p th:text="${formula.toStringWithRandomBlankNumber()}" class="exercise" >dummy</p>
     </th:block>
 
     <!--

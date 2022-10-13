@@ -72,7 +72,7 @@ public class MultiplicationMathGenerator
         MulMathOperator mulMathOperator = new MulMathOperator();
         EqualsMathOperator theEqualMathOperator = new EqualsMathOperator();
 
-        //Integer randomizerRangeEndNumber = this.numberRangeEnd+1;
+        // By using the results square we ensure that our exercises will not exceed the maximum range
         Double squareOfResult = (Math.sqrt(this.numberRangeEnd.doubleValue()));
         Integer randomizerRangeEndNumber = squareOfResult.intValue()+1;
 
