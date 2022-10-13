@@ -121,9 +121,9 @@ COLORS
 
 
 /* ------------------------------------------
-ID-Definitions 
+ELEMENTS
 ------------------------------------------*/
-#operationCheckboxes{
+.operationCheckboxes{
     display:flex;
     justify-content: space-between;
 }

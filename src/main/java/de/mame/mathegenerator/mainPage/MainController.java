@@ -1,7 +1,7 @@
 package de.mame.mathegenerator.mainPage;
 
 import de.mame.mathegenerator.model.datas.MainFormData;
-import de.mame.mathegenerator.model.mathGenerators.AdditionMathGenerator;
+import de.mame.mathegenerator.model.mathGenerators.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,13 +27,19 @@ public class MainController {
         model.addAttribute("theFormData",theFormData);
         System.out.println("Received number of exercises :" + theFormData.getNumberOfExercises());
 
-        AdditionMathGenerator theGenerator = new AdditionMathGenerator();
-        theGenerator.setNumberRangeStart(0);
-        theGenerator.setNumberRangeEnd(theFormData.getExercisesNumberRange());
-        theGenerator.setNumberOfExercises(theFormData.getNumberOfExercises());
+        /* Add a generator for each checked type of math operations */
+        GroupOfMathGenerators theMultiGenerator = new GroupOfMathGenerators();
+        if(theFormData.getWithOperationsAdd()){theMultiGenerator.AddMathGenerator(new AdditionMathGenerator());}
+        if(theFormData.getWithOperationsDiv()){theMultiGenerator.AddMathGenerator(new DivisionMathGenerator());}
+        if(theFormData.getWithOperationsMul()){theMultiGenerator.AddMathGenerator(new MultiplicationMathGenerator());}
+        if(theFormData.getWithOperationsSub()){theMultiGenerator.AddMathGenerator(new SubtractionMathGenerator());}
 
-        model.addAttribute("theFormulas", theGenerator.createExercises());
-        model.addAttribute("theGenerator",theGenerator);
+        theMultiGenerator.setNumberRangeStart(0);
+        theMultiGenerator.setNumberRangeEnd(theFormData.getExercisesNumberRange());
+        theMultiGenerator.setNumberOfExercises(theFormData.getNumberOfExercises());
+
+        model.addAttribute("theFormulas", theMultiGenerator.createExercises());
+        model.addAttribute("theGenerator",theMultiGenerator);
 
         return "result-page";
     }

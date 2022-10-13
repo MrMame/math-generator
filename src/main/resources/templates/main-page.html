@@ -35,17 +35,17 @@
                     <label for="exercisePacketSize">Aufgabenpaket Grösse</label><br>
                     <input type="text" class="full-width" id="exercisePacketSize" th:field="*{exercisesPacketSize}" ><br>
                     <br>
-                    <div id="operationCheckboxes">
+                    <div class="operationCheckboxes">
                         <label for="add">Add(+)</label>
-                        <input type="checkbox" id="add" name="calcType1" value="add"><br>
+                        <input type="checkbox" id="add" name="withOperationsAdd" th:checked="*{withOperationsAdd}"><br>
                         <label for="sub">Min(-)</label>
-                        <input type="checkbox" id="sub" name="calcType2" value="sub"><br>
+                        <input type="checkbox" id="sub" name="withOperationsSub" th:checked="*{withOperationsSub}"><br>
                     </div>
-                    <div id="operationCheckboxes">
+                    <div class="operationCheckboxes">
                         <label for="multi">Mul(x)</label>
-                        <input type="checkbox" id="multi" name="calcType3" value="multi"><br>
+                        <input type="checkbox" id="multi" name="withOperationsMul" th:checked="*{withOperationsMul}"><br>
                         <label for="div">Div(/)</label>
-                        <input type="checkbox" id="div" name="calcType4" value="div"><br><br>
+                        <input type="checkbox" id="div" name="withOperationsDiv" th:checked="*{withOperationsDiv}"><br><br>
                     </div>
                     <br>
 
