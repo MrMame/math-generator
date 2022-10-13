@@ -29,7 +29,7 @@ public class MainController {
 
         AdditionMathGenerator theGenerator = new AdditionMathGenerator();
         theGenerator.setNumberRangeStart(0);
-        theGenerator.setNumberRangeEnd(100);
+        theGenerator.setNumberRangeEnd(theFormData.getExercisesNumberRange());
         theGenerator.setNumberOfExercises(theFormData.getNumberOfExercises());
 
         model.addAttribute("theFormulas", theGenerator.createExercises());

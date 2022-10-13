@@ -74,22 +74,15 @@ public class AdditionMathGenerator
         AddMathOperator theAddMathOperator = new AddMathOperator();
         EqualsMathOperator theEqualMathOperator = new EqualsMathOperator();
 
+        Integer randomizerRangeEndNumber = this.numberRangeEnd+1;
 
         for(Integer i = 0;i<this.numberOfExercises;i++){
             // get the first number inside the range
-            numA = theRand.nextInt(this.numberRangeStart,this.numberRangeEnd);
+            numA = theRand.nextInt(this.numberRangeStart,randomizerRangeEndNumber);
             // Get the second random number, but in the range of numA and Range End.
-            numB = theRand.nextInt(this.numberRangeEnd-numA);
+            numB = (this.numberRangeEnd-numA<=0) ? 0: theRand.nextInt(this.numberRangeEnd-numA);
 
             result = numA + numB;
-
-            /*
-            theFormulas.add(new Formula(numA.toString() +
-                             " + " +
-                             numB.toString() +
-                             " = " +
-                             result.toString()));
-            */
 
             Formula theFormula = new Formula();
             theFormula.AddFormulaMember(new RealNumber(numA));
@@ -99,7 +92,6 @@ public class AdditionMathGenerator
             theFormula.AddFormulaMember(new RealNumber(result));
 
             theFormulas.add(theFormula);
-
 
         }
         return theFormulas;
