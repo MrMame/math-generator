@@ -6,25 +6,17 @@
     <title>Title</title>
 </head>
 <body>
-    <p>Das Ergebnis lautet </p>
-    <br><br>
-
-<!--
-    <p th:each="exercise,iterState : ${theGenerator.createExercises()}"
-       th:text="${exercise} + 'iterstate: ' + ${iterState.count}" class="exercise" >dummy</p>
--->
-    <th:block th:each="formula,iterState : ${theFormulas}">
-        <p th:text="${formula.toStringWithRandomBlankNumber()}" class="exercise" >dummy</p>
-    </th:block>
-
-    <!--
-    <th:block th:each="exercise,iterState : ${theGenerator.createExercises()">
-        <div class="exercisePack" th:if="(${iterState.index % 5) == 0}">
-            <p th:text="${exercise}">dummy</p>
+    <div class="row">
+        <div class="col-mobile-1 col-mid-1 col-wide-1 "></div>
+        <div class="col-mobile-10 col-mid-10 col-wide-10 ">
+            <div class="resultColumn">
+                <th:block th:each="formula,iterState : ${theFormulas}">
+                    <p th:text="${formula.toStringWithRandomBlankNumber()}" class="exercise" >dummy</p>
+                </th:block>
+            </div>
         </div>
-    </th:block>
-    -->
-
+        <div class="col-mobile-1 col-mid-1 col-wide-1 "></div>
+    </div>
 
 </body>
 </html>
