@@ -1,6 +1,6 @@
-package de.mame.mathegenerator.model.mathGenerators;
+package de.mame.mathegenerator.logics.mathGenerators;
 
-import de.mame.mathegenerator.model.datas.formulas.Formula;
+import de.mame.mathegenerator.model.formulas.Formula;
 
 import java.util.List;
 

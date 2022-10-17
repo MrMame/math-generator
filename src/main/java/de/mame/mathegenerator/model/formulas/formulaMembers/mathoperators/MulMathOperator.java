@@ -1,4 +1,4 @@
-package de.mame.mathegenerator.model.datas.formulas.members.mathoperators;
+package de.mame.mathegenerator.model.formulas.formulaMembers.mathoperators;
 
 public class MulMathOperator implements MathOperator{
     @Override

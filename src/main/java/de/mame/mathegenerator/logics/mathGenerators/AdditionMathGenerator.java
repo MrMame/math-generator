@@ -1,21 +1,26 @@
-package de.mame.mathegenerator.model.mathGenerators;
+package de.mame.mathegenerator.logics.mathGenerators;
 
-import de.mame.mathegenerator.model.datas.formulas.Formula;
-import de.mame.mathegenerator.model.datas.formulas.members.mathoperators.DivMathOperator;
-import de.mame.mathegenerator.model.datas.formulas.members.mathoperators.EqualsMathOperator;
-import de.mame.mathegenerator.model.datas.formulas.members.mathoperators.MulMathOperator;
-import de.mame.mathegenerator.model.datas.formulas.members.numbers.RealNumber;
+import de.mame.mathegenerator.model.formulas.Formula;
+import de.mame.mathegenerator.model.formulas.formulaMembers.mathoperators.AddMathOperator;
+import de.mame.mathegenerator.model.formulas.formulaMembers.mathoperators.EqualsMathOperator;
+import de.mame.mathegenerator.model.formulas.formulaMembers.numbers.RealNumber;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class MultiplicationMathGenerator
-    implements MathGenerator{
+@Component
+public class AdditionMathGenerator
+    implements MathGenerator {
 
     private Integer numberOfExercises;
     private Integer numberRangeStart;
     private Integer numberRangeEnd;
+
+
+
 
     @Override
     public void setNumberOfExercises(Integer numberOfExercises) {
@@ -69,24 +74,22 @@ public class MultiplicationMathGenerator
         Integer numA;
         Integer numB;
         Integer result;
-        MulMathOperator mulMathOperator = new MulMathOperator();
+        AddMathOperator theAddMathOperator = new AddMathOperator();
         EqualsMathOperator theEqualMathOperator = new EqualsMathOperator();
 
-        // By using the results square we ensure that our exercises will not exceed the maximum range
-        Double squareOfResult = (Math.sqrt(this.numberRangeEnd.doubleValue()));
-        Integer randomizerRangeEndNumber = squareOfResult.intValue()+1;
+        Integer randomizerRangeEndNumber = this.numberRangeEnd+1;
 
         for(Integer i = 0;i<this.numberOfExercises;i++){
             // get the first number inside the range
             numA = theRand.nextInt(this.numberRangeStart,randomizerRangeEndNumber);
             // Get the second random number, but in the range of numA and Range End.
-            numB = (this.numberRangeEnd-numA<=0) ? 0: theRand.nextInt(randomizerRangeEndNumber-numA);
+            numB = (this.numberRangeEnd-numA<=0) ? 0: theRand.nextInt(this.numberRangeEnd-numA);
 
-            result = numA * numB;
+            result = numA + numB;
 
             Formula theFormula = new Formula();
             theFormula.AddFormulaMember(new RealNumber(numA));
-            theFormula.AddFormulaMember(mulMathOperator);
+            theFormula.AddFormulaMember(theAddMathOperator);
             theFormula.AddFormulaMember(new RealNumber(numB));
             theFormula.AddFormulaMember(theEqualMathOperator);
             theFormula.AddFormulaMember(new RealNumber(result));

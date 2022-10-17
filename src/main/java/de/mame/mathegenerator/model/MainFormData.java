@@ -1,8 +1,11 @@
-package de.mame.mathegenerator.model.datas;
+package de.mame.mathegenerator.model;
 
 public class MainFormData {
     Integer numberOfExercises;
-    Integer exercisesNumberRange;
+
+    Integer exercisesNumberRangeStart;
+    Integer exercisesNumberRangeEnd;
+
     Integer exercisesPacketSize;
     Boolean withOperationsAdd=false;
     Boolean withOperationsSub=false;
@@ -42,13 +45,20 @@ public class MainFormData {
     }
 
 
-
-    public Integer getExercisesNumberRange() {
-        return exercisesNumberRange;
+    public Integer getExercisesNumberRangeStart() {
+        return exercisesNumberRangeStart;
     }
 
-    public void setExercisesNumberRange(Integer exercisesNumberRange) {
-        this.exercisesNumberRange = exercisesNumberRange;
+    public void setExercisesNumberRangeStart(Integer exercisesNumberRangeStart) {
+        this.exercisesNumberRangeStart = exercisesNumberRangeStart;
+    }
+
+    public Integer getExercisesNumberRangeEnd() {
+        return exercisesNumberRangeEnd;
+    }
+
+    public void setExercisesNumberRangeEnd(Integer exercisesNumberRangeEnd) {
+        this.exercisesNumberRangeEnd = exercisesNumberRangeEnd;
     }
 
     public Integer getExercisesPacketSize() {

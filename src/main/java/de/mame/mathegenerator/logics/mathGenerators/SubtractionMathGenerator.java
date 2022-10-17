@@ -1,15 +1,16 @@
-package de.mame.mathegenerator.model.mathGenerators;
+package de.mame.mathegenerator.logics.mathGenerators;
 
-import de.mame.mathegenerator.model.datas.formulas.Formula;
-import de.mame.mathegenerator.model.datas.formulas.members.mathoperators.AddMathOperator;
-import de.mame.mathegenerator.model.datas.formulas.members.mathoperators.EqualsMathOperator;
-import de.mame.mathegenerator.model.datas.formulas.members.mathoperators.SubMathOperator;
-import de.mame.mathegenerator.model.datas.formulas.members.numbers.RealNumber;
+import de.mame.mathegenerator.model.formulas.Formula;
+import de.mame.mathegenerator.model.formulas.formulaMembers.mathoperators.EqualsMathOperator;
+import de.mame.mathegenerator.model.formulas.formulaMembers.mathoperators.SubMathOperator;
+import de.mame.mathegenerator.model.formulas.formulaMembers.numbers.RealNumber;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+@Component
 public class SubtractionMathGenerator
     implements MathGenerator{
 

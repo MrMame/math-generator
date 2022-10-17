@@ -1,7 +1,7 @@
-package de.mame.mathegenerator.model.datas.formulas;
+package de.mame.mathegenerator.model.formulas;
 
-import de.mame.mathegenerator.model.datas.formulas.members.FormulaMember;
-import de.mame.mathegenerator.model.datas.formulas.members.numbers.RealNumber;
+import de.mame.mathegenerator.model.formulas.formulaMembers.FormulaMember;
+import de.mame.mathegenerator.model.formulas.formulaMembers.numbers.RealNumber;
 
 import java.util.ArrayList;
 import java.util.Collections;
