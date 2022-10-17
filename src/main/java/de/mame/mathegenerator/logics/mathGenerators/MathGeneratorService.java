@@ -4,7 +4,6 @@ import de.mame.mathegenerator.model.formulas.Formula;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,9 +36,9 @@ public class MathGeneratorService {
                                                  Integer endNumberOfFormulasRange,
                                                  Integer numberOfFormulas){
 
-        this._theAdditionMathGenerator.setNumberRangeStart(startNumberOfFormulasRange);
-        this._theAdditionMathGenerator.setNumberRangeEnd(endNumberOfFormulasRange);
-        this._theAdditionMathGenerator.setNumberOfExercises(numberOfFormulas);
+        this._theAdditionMathGenerator.set_numberRangeStart(startNumberOfFormulasRange);
+        this._theAdditionMathGenerator.set_numberRangeEnd(endNumberOfFormulasRange);
+        this._theAdditionMathGenerator.set_numberOfExercises(numberOfFormulas);
 
         return this._theAdditionMathGenerator.createExercises();
     }
@@ -49,9 +48,9 @@ public class MathGeneratorService {
                                                 Integer endNumberOfFormulasRange,
                                                 Integer numberOfFormulas){
 
-        this._theSubtractionMathGenerator.setNumberRangeStart(startNumberOfFormulasRange);
-        this._theSubtractionMathGenerator.setNumberRangeEnd(endNumberOfFormulasRange);
-        this._theSubtractionMathGenerator.setNumberOfExercises(numberOfFormulas);
+        this._theSubtractionMathGenerator.set_numberRangeStart(startNumberOfFormulasRange);
+        this._theSubtractionMathGenerator.set_numberRangeEnd(endNumberOfFormulasRange);
+        this._theSubtractionMathGenerator.set_numberOfExercises(numberOfFormulas);
 
         return this._theSubtractionMathGenerator.createExercises();
     }
@@ -60,9 +59,9 @@ public class MathGeneratorService {
                                                    Integer endNumberOfFormulasRange,
                                                    Integer numberOfFormulas){
 
-        this._theMultiplicationMathGenerator.setNumberRangeStart(startNumberOfFormulasRange);
-        this._theMultiplicationMathGenerator.setNumberRangeEnd(endNumberOfFormulasRange);
-        this._theMultiplicationMathGenerator.setNumberOfExercises(numberOfFormulas);
+        this._theMultiplicationMathGenerator.set_numberRangeStart(startNumberOfFormulasRange);
+        this._theMultiplicationMathGenerator.set_numberRangeEnd(endNumberOfFormulasRange);
+        this._theMultiplicationMathGenerator.set_numberOfExercises(numberOfFormulas);
 
         return this._theMultiplicationMathGenerator.createExercises();
     }
@@ -71,9 +70,9 @@ public class MathGeneratorService {
                                                       Integer endNumberOfFormulasRange,
                                                       Integer numberOfFormulas){
 
-        this._theDivisionMathGenerator.setNumberRangeStart(startNumberOfFormulasRange);
-        this._theDivisionMathGenerator.setNumberRangeEnd(endNumberOfFormulasRange);
-        this._theDivisionMathGenerator.setNumberOfExercises(numberOfFormulas);
+        this._theDivisionMathGenerator.set_numberRangeStart(startNumberOfFormulasRange);
+        this._theDivisionMathGenerator.set_numberRangeEnd(endNumberOfFormulasRange);
+        this._theDivisionMathGenerator.set_numberOfExercises(numberOfFormulas);
 
         return this._theDivisionMathGenerator.createExercises();
     }

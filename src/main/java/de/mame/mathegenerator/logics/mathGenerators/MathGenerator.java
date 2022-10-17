@@ -6,14 +6,14 @@ import java.util.List;
 
 public interface MathGenerator {
 
-    void setNumberOfExercises(Integer numberOfExercises);
-    Integer getNumberOfExercises();
+    void set_numberOfExercises(Integer _numberOfExercises);
+    Integer get_numberOfExercises();
 
-    void setNumberRangeStart(Integer startValue);
-    Integer getNumberRangeStart();
+    void set_numberRangeStart(Integer startValue);
+    Integer get_numberRangeStart();
 
-    void setNumberRangeEnd(Integer endValue);
-    Integer getNumberRangeEnd();
+    void set_numberRangeEnd(Integer endValue);
+    Integer get_numberRangeEnd();
 
     List<Formula> createExercises();
 

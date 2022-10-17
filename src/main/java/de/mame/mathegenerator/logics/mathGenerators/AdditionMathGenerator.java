@@ -4,7 +4,6 @@ import de.mame.mathegenerator.model.formulas.Formula;
 import de.mame.mathegenerator.model.formulas.formulaMembers.mathoperators.AddMathOperator;
 import de.mame.mathegenerator.model.formulas.formulaMembers.mathoperators.EqualsMathOperator;
 import de.mame.mathegenerator.model.formulas.formulaMembers.numbers.RealNumber;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -15,52 +14,56 @@ import java.util.Random;
 public class AdditionMathGenerator
     implements MathGenerator {
 
-    private Integer numberOfExercises;
-    private Integer numberRangeStart;
-    private Integer numberRangeEnd;
+    private Integer _numberOfExercises;
+    private Integer _numberRangeStart;
+    private Integer _numberRangeEnd;
 
+    private final Random _theRand = new Random();
 
+    private ArrayList<Integer> _randomNumberPool;
 
 
     @Override
-    public void setNumberOfExercises(Integer numberOfExercises) {
-        this.numberOfExercises = numberOfExercises;
+    public void set_numberOfExercises(Integer _numberOfExercises) {
+        this._numberOfExercises = _numberOfExercises;
     }
     @Override
-    public Integer getNumberOfExercises() {
-        return this.numberOfExercises;
+    public Integer get_numberOfExercises() {
+        return this._numberOfExercises;
     }
 
     @Override
-    public void setNumberRangeStart(Integer startValue) {
-        this.numberRangeStart = startValue;
+    public void set_numberRangeStart(Integer startValue) {
+        this._numberRangeStart = startValue;
     }
     @Override
-    public Integer getNumberRangeStart() {
-        return this.numberRangeStart;
+    public Integer get_numberRangeStart() {
+        return this._numberRangeStart;
     }
 
     @Override
-    public void setNumberRangeEnd(Integer endValue) {
-        this.numberRangeEnd = endValue;
+    public void set_numberRangeEnd(Integer endValue) {
+        this._numberRangeEnd = endValue;
     }
     @Override
-    public Integer getNumberRangeEnd() {
-        return this.numberRangeEnd;
+    public Integer get_numberRangeEnd() {
+        return this._numberRangeEnd;
     }
+
+
 
     @Override
     public List<Formula> createExercises() {
         // Check necessary parameters
-        if(this.numberRangeStart == null){throw new IllegalArgumentException();}
-        if(this.numberRangeEnd == null){throw new IllegalArgumentException();}
-        if(this.numberOfExercises == null){throw new IllegalArgumentException();}
-        if(this.numberOfExercises <= 0){return new ArrayList<Formula>(); }
-        if(this.numberRangeEnd < this.numberRangeStart){
+        if(this._numberRangeStart == null){throw new IllegalArgumentException();}
+        if(this._numberRangeEnd == null){throw new IllegalArgumentException();}
+        if(this._numberOfExercises == null){throw new IllegalArgumentException();}
+        if(this._numberOfExercises <= 0){return new ArrayList<Formula>(); }
+        if(this._numberRangeEnd < this._numberRangeStart){
             // switch start/end if start has higher value than beginning
-            Integer tmp = this.numberRangeEnd;
-            this.numberRangeEnd = this.numberRangeStart;
-            this.numberRangeStart = tmp;
+            Integer tmp = this._numberRangeEnd;
+            this._numberRangeEnd = this._numberRangeStart;
+            this._numberRangeStart = tmp;
         }
         // create list of string
         return createListOfFormulas();
@@ -69,7 +72,7 @@ public class AdditionMathGenerator
     private List<Formula> createListOfFormulas() {
         List<Formula> theFormulas = new ArrayList<Formula>();
 
-        Random theRand = new Random();
+
 
         Integer numA;
         Integer numB;
@@ -77,20 +80,30 @@ public class AdditionMathGenerator
         AddMathOperator theAddMathOperator = new AddMathOperator();
         EqualsMathOperator theEqualMathOperator = new EqualsMathOperator();
 
-        Integer randomizerRangeEndNumber = this.numberRangeEnd+1;
+        Integer randomizerRangeEndNumber = this._numberRangeEnd +1;
 
-        for(Integer i = 0;i<this.numberOfExercises;i++){
+
+        this.initRandomNumberPool();
+
+        for(Integer i = 0; i<this._numberOfExercises; i++){
             // get the first number inside the range
-            numA = theRand.nextInt(this.numberRangeStart,randomizerRangeEndNumber);
-            // Get the second random number, but in the range of numA and Range End.
-            numB = (this.numberRangeEnd-numA<=0) ? 0: theRand.nextInt(this.numberRangeEnd-numA);
+            numA = getRandomNumberFromPool();     //_theRand.nextInt( this._numberRangeStart, randomizerRangeEndNumber);
+            numB = _theRand.nextInt(1,randomizerRangeEndNumber-numA+1);
 
             result = numA + numB;
 
+            /* Randomly change numA and NumB position in formula. That will end
+             in a more mixed formula look.*/
             Formula theFormula = new Formula();
-            theFormula.AddFormulaMember(new RealNumber(numA));
-            theFormula.AddFormulaMember(theAddMathOperator);
-            theFormula.AddFormulaMember(new RealNumber(numB));
+            if(this._theRand.nextInt(1,3) == 1){
+                theFormula.AddFormulaMember(new RealNumber(numA));
+                theFormula.AddFormulaMember(theAddMathOperator);
+                theFormula.AddFormulaMember(new RealNumber(numB));
+            }else{
+                theFormula.AddFormulaMember(new RealNumber(numB));
+                theFormula.AddFormulaMember(theAddMathOperator);
+                theFormula.AddFormulaMember(new RealNumber(numA));
+            }
             theFormula.AddFormulaMember(theEqualMathOperator);
             theFormula.AddFormulaMember(new RealNumber(result));
 
@@ -98,5 +111,31 @@ public class AdditionMathGenerator
 
         }
         return theFormulas;
+    }
+
+
+
+    /* The random number pool is a list of numbers from start to end.
+    * */
+    private void initRandomNumberPool(){
+        this._randomNumberPool = new ArrayList<Integer>();
+        for(Integer i = this._numberRangeStart; i<this._numberRangeEnd; i++){
+            this._randomNumberPool.add(i);}
+        }
+
+
+    private Integer getRandomNumberFromPool(){
+        if(this._randomNumberPool == null)throw new IllegalArgumentException("RandomNumberPool is null !");
+        /* ReInit if already empty */
+        if(this._randomNumberPool.isEmpty()){
+            this.initRandomNumberPool();
+        }
+        /* Return a random number from the List. This number can be returned
+        * next time only after all other numbers were taken from the list. */
+        int numberIdx = _theRand.nextInt(this._randomNumberPool.size());
+        Integer returnNumber = this._randomNumberPool.get(numberIdx);
+        this._randomNumberPool.remove(numberIdx);
+        return returnNumber;
+
     }
 }

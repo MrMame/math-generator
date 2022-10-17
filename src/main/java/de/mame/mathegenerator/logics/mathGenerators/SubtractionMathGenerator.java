@@ -22,29 +22,29 @@ public class SubtractionMathGenerator
 
 
     @Override
-    public void setNumberOfExercises(Integer numberOfExercises) {
-        this.numberOfExercises = numberOfExercises;
+    public void set_numberOfExercises(Integer _numberOfExercises) {
+        this.numberOfExercises = _numberOfExercises;
     }
     @Override
-    public Integer getNumberOfExercises() {
+    public Integer get_numberOfExercises() {
         return this.numberOfExercises;
     }
 
     @Override
-    public void setNumberRangeStart(Integer startValue) {
+    public void set_numberRangeStart(Integer startValue) {
         this.numberRangeStart = startValue;
     }
     @Override
-    public Integer getNumberRangeStart() {
+    public Integer get_numberRangeStart() {
         return this.numberRangeStart;
     }
 
     @Override
-    public void setNumberRangeEnd(Integer endValue) {
+    public void set_numberRangeEnd(Integer endValue) {
         this.numberRangeEnd = endValue;
     }
     @Override
-    public Integer getNumberRangeEnd() {
+    public Integer get_numberRangeEnd() {
         return this.numberRangeEnd;
     }
 

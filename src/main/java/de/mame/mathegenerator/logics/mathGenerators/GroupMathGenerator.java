@@ -17,29 +17,29 @@ public class GroupMathGenerator implements MathGenerator{
 
 
     @Override
-    public void setNumberOfExercises(Integer numberOfExercises) {
-        this._numberOfExercises=numberOfExercises;
+    public void set_numberOfExercises(Integer _numberOfExercises) {
+        this._numberOfExercises= _numberOfExercises;
     }
     @Override
-    public Integer getNumberOfExercises() {
+    public Integer get_numberOfExercises() {
         return this._numberOfExercises;
     }
 
     @Override
-    public void setNumberRangeStart(Integer startValue) {
+    public void set_numberRangeStart(Integer startValue) {
         this._numberRangeStart = startValue;
     }
     @Override
-    public Integer getNumberRangeStart() {
+    public Integer get_numberRangeStart() {
         return this._numberRangeStart;
     }
 
     @Override
-    public void setNumberRangeEnd(Integer endValue) {
+    public void set_numberRangeEnd(Integer endValue) {
         this._numberRangeEnd = endValue;
     }
     @Override
-    public Integer getNumberRangeEnd() {
+    public Integer get_numberRangeEnd() {
         return this._numberRangeEnd;
     }
 
@@ -57,9 +57,9 @@ public class GroupMathGenerator implements MathGenerator{
             return retFormulas;
         }else{
             for(MathGenerator theGenerator:this._theMathGenerators){
-                theGenerator.setNumberOfExercises(this._numberOfExercises);
-                theGenerator.setNumberRangeStart(this._numberRangeStart);
-                theGenerator.setNumberRangeEnd(this._numberRangeEnd);
+                theGenerator.set_numberOfExercises(this._numberOfExercises);
+                theGenerator.set_numberRangeStart(this._numberRangeStart);
+                theGenerator.set_numberRangeEnd(this._numberRangeEnd);
                 // Add the Generators Exercises to the Return container
                 retFormulas.addAll(theGenerator.createExercises());
             }
