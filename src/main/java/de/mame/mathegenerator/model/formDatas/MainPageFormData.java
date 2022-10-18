@@ -1,15 +1,28 @@
 package de.mame.mathegenerator.model.formDatas;
 
-public class MainPageFormData {
-    Integer numberOfExercises=100;
-    Integer exercisesNumberRangeStart=1;
-    Integer exercisesNumberRangeEnd=100;
+import org.hibernate.validator.constraints.ScriptAssert;
 
-    Integer exercisesPacketSize;
-    Boolean withOperationsAdd=false;
-    Boolean withOperationsSub=false;
-    Boolean withOperationsMul=false;
-    Boolean withOperationsDiv=false;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
+
+
+public class MainPageFormData {
+
+
+    @Min(value=1,message="Die Zahl muss grösser oder gleich 1 sein")
+    private Integer numberOfExercises=100;
+    @Min(value=1,message="Die Zahl muss grösser oder gleich 1 sein")
+    @Max(value=1000000000,message="Die Zahl muss kleiner 1000000000 sein")
+    private Integer exercisesNumberRangeStart=1;
+    @Min(value=1,message="Die Zahl muss grösser oder gleich 1 sein")
+    @Max(value=1000000000,message="Die Zahl muss kleiner 1000000000 sein")
+    private Integer exercisesNumberRangeEnd=100;
+
+    private Boolean withOperationsAdd=false;
+    private Boolean withOperationsSub=false;
+    private Boolean withOperationsMul=false;
+    private Boolean withOperationsDiv=false;
 
     public Boolean getWithOperationsAdd() {
         return withOperationsAdd;
@@ -47,7 +60,6 @@ public class MainPageFormData {
     public Integer getExercisesNumberRangeStart() {
         return exercisesNumberRangeStart;
     }
-
     public void setExercisesNumberRangeStart(Integer exercisesNumberRangeStart) {
         this.exercisesNumberRangeStart = exercisesNumberRangeStart;
     }
@@ -60,16 +72,7 @@ public class MainPageFormData {
         this.exercisesNumberRangeEnd = exercisesNumberRangeEnd;
     }
 
-    public Integer getExercisesPacketSize() {
-        return exercisesPacketSize;
-    }
 
-    public void setExercisesPacketSize(Integer exercisesPacketSize) {
-        this.exercisesPacketSize = exercisesPacketSize;
-    }
-
-    public MainPageFormData() {
-    }
 
     public Integer getNumberOfExercises() {
         return numberOfExercises;
@@ -77,6 +80,19 @@ public class MainPageFormData {
     public void setNumberOfExercises(Integer numberOfExercises) {
         this.numberOfExercises = numberOfExercises;
     }
+
+    public MainPageFormData() {
+    }
+
+
+    private void EnsureRightNumberRangeOrder() {
+        if(this.exercisesNumberRangeStart>this.exercisesNumberRangeEnd){
+            int tmp = this.exercisesNumberRangeEnd;
+            this.exercisesNumberRangeEnd = this.exercisesNumberRangeStart;
+            this.exercisesNumberRangeStart = tmp;
+        }
+    }
+
 
 
 }

@@ -29,12 +29,20 @@
             <form id="inputForm" action="#" th:action="@{/}" th:object="${theFormData}" th:target="_blank" method="post">
 
                 <label for="numberOfExercises">Anzahl Aufgaben</label><br>
-                <input type="text" class="full-width" id="numberOfExercises" th:field="*{numberOfExercises}" ><br>
+                <input type="text" class="full-width" id="numberOfExercises" th:field="*{numberOfExercises}" >
+                <p th:if="${#fields.hasErrors('numberOfExercises')}" class="validatorMessage" th:errors="*{numberOfExercises}">Invalid</p>
+                <br>
 
-                <label for="exerciseNumberRangeStart">Erste Zahl des Zahlenbereichs</label><br>
-                <input type="text" class="full-width" id="exerciseNumberRangeStart" th:field="*{exercisesNumberRangeStart}" ><br>
-                <label for="exerciseNumberRangeEnd">Letzte Zahl des Zahlenbereichs</label><br>
-                <input type="text" class="full-width" id="exerciseNumberRangeEnd" th:field="*{exercisesNumberRangeEnd}" ><br>
+                <label for="exercisesNumberRangeStart">Erste Zahl des Zahlenbereichs</label><br>
+                <input type="text" class="full-width" id="exercisesNumberRangeStart" th:field="*{exercisesNumberRangeStart}" >
+                <p th:if="${#fields.hasErrors('exercisesNumberRangeStart')}" class="validatorMessage" th:errors="*{exercisesNumberRangeStart}">Invalid</p>
+                <br>
+
+                <label for="exercisesNumberRangeEnd">Letzte Zahl des Zahlenbereichs</label><br>
+                <input type="text" class="full-width" id="exercisesNumberRangeEnd" th:field="*{exercisesNumberRangeEnd}" >
+                <p th:if="${#fields.hasErrors('exercisesNumberRangeEnd')}" class="validatorMessage" th:errors="*{exercisesNumberRangeEnd}">Invalid</p>
+                <br>
+
                 <br>
                 <div class="operationCheckboxes">
                     <label for="add">Add(+)</label>

@@ -145,3 +145,7 @@ ELEMENTS
     margin:5px;
     width:50%;
 }
+
+.validatorMessage{
+     background-color: red;
+}
