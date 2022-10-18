@@ -86,7 +86,6 @@ Elements
 ------------------------------------------*/
 .exercise{
     font-family:'Courier New', Arial;
-    margin-top:10px;
 }
 
 
@@ -94,4 +93,6 @@ Elements
 .resultColumn{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px,auto));
+
 }
+

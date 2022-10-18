@@ -95,7 +95,8 @@ public class AdditionMathGenerator
             /* Randomly change numA and NumB position in formula. That will end
              in a more mixed formula look.*/
             Formula theFormula = new Formula();
-            if(this._theRand.nextInt(1,3) == 1){
+            //if(this._theRand.nextInt(1,3) == 1){
+            if(true){
                 theFormula.AddFormulaMember(new RealNumber(numA));
                 theFormula.AddFormulaMember(theAddMathOperator);
                 theFormula.AddFormulaMember(new RealNumber(numB));
@@ -118,6 +119,7 @@ public class AdditionMathGenerator
     /* The random number pool is a list of numbers from start to end.
     * */
     private void initRandomNumberPool(){
+        System.out.println("Init new RandomNumberPool...");
         this._randomNumberPool = new ArrayList<Integer>();
         for(Integer i = this._numberRangeStart; i<this._numberRangeEnd; i++){
             this._randomNumberPool.add(i);}
@@ -134,6 +136,7 @@ public class AdditionMathGenerator
         * next time only after all other numbers were taken from the list. */
         int numberIdx = _theRand.nextInt(this._randomNumberPool.size());
         Integer returnNumber = this._randomNumberPool.get(numberIdx);
+        System.out.println("Index " + numberIdx + " zahl " + returnNumber);
         this._randomNumberPool.remove(numberIdx);
         return returnNumber;
 
