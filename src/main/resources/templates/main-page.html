@@ -26,7 +26,7 @@
         <div class ="col-wide-2 col-mid-2 col-mobile-0"></div>
         <div class ="col-wide-4 col-mid-4 col-mobile-12">
 
-            <form id="inputForm" action="#" th:action="@{/}" th:object="${theFormData}" method="post">
+            <form id="inputForm" action="#" th:action="@{/}" th:object="${theFormData}" th:target="_blank" method="post">
 
                 <label for="numberOfExercises">Anzahl Aufgaben</label><br>
                 <input type="text" class="full-width" id="numberOfExercises" th:field="*{numberOfExercises}" ><br>
