@@ -10,7 +10,7 @@ Setup Responsive Design
 [class*="col-"]{
     float:left;
     padding: 15px;
-    /* border:1px solid red; */
+    /*border:1px solid red;*/
 }
 .row::after{
     content:"";
@@ -26,6 +26,7 @@ Setup Responsive Design
 
 /* Small Mobile Devices*/
 @media only screen  and (max-width:600px){
+    .col-mobile-0 {width: 0%;display: none;}
     .col-mobile-1 {width: 8.33%;}
     .col-mobile-2 {width: 16.66%;}
     .col-mobile-3 {width: 25%;}
@@ -40,6 +41,8 @@ Setup Responsive Design
     .col-mobile-12{width: 100%;}
 
     .hideIfMobile{display: none;}
+
+    
 }
 
 /* Desktops, Laptops and Tablets */
@@ -58,6 +61,8 @@ Setup Responsive Design
     .col-mid-12{width: 100%;}
 
     .hideIfMobile{display: table;}
+
+    #inputForm { width: min(100%,400px);margin-left: auto;}
 }
 
 
@@ -77,6 +82,8 @@ Setup Responsive Design
     .col-wide-12{width: 100%;}
 
     .hideIfMobile{display: table;}
+
+    #inputForm { width: min(100%,400px);margin-left: auto;}
 }
 
 
@@ -93,6 +100,12 @@ Images resizable
     margin-left: auto;
     margin-right: auto;
     width:fit-content;
+}
+
+.flex-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -126,4 +139,9 @@ ELEMENTS
 .operationCheckboxes{
     display:flex;
     justify-content: space-between;
+}
+
+.menueBoxes{
+    margin:5px;
+    width:50%;
 }

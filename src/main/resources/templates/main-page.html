@@ -11,67 +11,68 @@
 
     <!-- HEADER -->
     <div class="row">
-        <div class ="col-wide-2 col-mid-2 col-mobile-2"></div>
-        <div class ="col-wide-8 col-mid-8 col-mobile-8">
+        <div class ="col-wide-2 col-mid-2 col-mobile-0"></div>
+        <div class ="col-wide-8 col-mid-8 col-mobile-12">
             <div class ="horizontal-center">
                 <img class ="resize-smaller-not-bigger" src="" th:src="@{/images/mathe-prinz-headline.svg}" />
                 <p class="hideIfMobile"> Mathematik-Aufgabenblätter selbst erstellen</p>
             </div>
         </div>
-        <div class ="col-wide-2 col-mid-2 col-mobile-2"></div>
+        <div class ="col-wide-2 col-mid-2 col-mobile-0"></div>
     </div>
 
     <!-- MENUE -->
     <div class="row background-color-secondary">
-        <div class ="col-wide-2 col-mid-2 col-mobile-1"></div>
-        <div class ="col-wide-4 col-mid-4 col-mobile-10">
-            <form class="inputForm" action="#" th:action="@{/}" th:object="${theFormData}" method="post">
+        <div class ="col-wide-2 col-mid-2 col-mobile-0"></div>
+        <div class ="col-wide-4 col-mid-4 col-mobile-12">
 
-                <div>
-                    <label for="numberOfExercises">Anzahl Aufgaben</label><br>
-                    <input type="text" class="full-width" id="numberOfExercises" th:field="*{numberOfExercises}" ><br>
+            <form id="inputForm" action="#" th:action="@{/}" th:object="${theFormData}" method="post">
 
-                    <label for="exerciseNumberRangeStart">Erste Zahl des Zahlenbereichs</label><br>
-                    <input type="text" class="full-width" id="exerciseNumberRangeStart" th:field="*{exercisesNumberRangeStart}" ><br>
-                    <label for="exerciseNumberRangeEnd">Letzte Zahl des Zahlenbereichs</label><br>
-                    <input type="text" class="full-width" id="exerciseNumberRangeEnd" th:field="*{exercisesNumberRangeEnd}" ><br>
+                <label for="numberOfExercises">Anzahl Aufgaben</label><br>
+                <input type="text" class="full-width" id="numberOfExercises" th:field="*{numberOfExercises}" ><br>
 
-                    <label for="exercisePacketSize">Aufgabenpaket Grösse</label><br>
-                    <input type="text" class="full-width" id="exercisePacketSize" th:field="*{exercisesPacketSize}" ><br>
-                    <br>
-                    <div class="operationCheckboxes">
-                        <label for="add">Add(+)</label>
-                        <input type="checkbox" id="add" name="withOperationsAdd" th:checked="*{withOperationsAdd}"><br>
-                        <label for="sub">Min(-)</label>
-                        <input type="checkbox" id="sub" name="withOperationsSub" th:checked="*{withOperationsSub}"><br>
-                    </div>
-                    <div class="operationCheckboxes">
-                        <label for="multi">Mul(x)</label>
-                        <input type="checkbox" id="multi" name="withOperationsMul" th:checked="*{withOperationsMul}"><br>
-                        <label for="div">Div(/)</label>
-                        <input type="checkbox" id="div" name="withOperationsDiv" th:checked="*{withOperationsDiv}"><br><br>
-                    </div>
-                    <br>
+                <label for="exerciseNumberRangeStart">Erste Zahl des Zahlenbereichs</label><br>
+                <input type="text" class="full-width" id="exerciseNumberRangeStart" th:field="*{exercisesNumberRangeStart}" ><br>
+                <label for="exerciseNumberRangeEnd">Letzte Zahl des Zahlenbereichs</label><br>
+                <input type="text" class="full-width" id="exerciseNumberRangeEnd" th:field="*{exercisesNumberRangeEnd}" ><br>
 
-                    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" ></p>
+                <label for="exercisePacketSize">Aufgabenpaket Grösse</label><br>
+                <input type="text" class="full-width" id="exercisePacketSize" th:field="*{exercisesPacketSize}" ><br>
+                <br>
+                <div class="operationCheckboxes">
+                    <label for="add">Add(+)</label>
+                    <input type="checkbox" id="add" name="withOperationsAdd" th:checked="*{withOperationsAdd}"><br>
+                    <label for="sub">Min(-)</label>
+                    <input type="checkbox" id="sub" name="withOperationsSub" th:checked="*{withOperationsSub}"><br>
                 </div>
+                <div class="operationCheckboxes">
+                    <label for="multi">Mul(x)</label>
+                    <input type="checkbox" id="multi" name="withOperationsMul" th:checked="*{withOperationsMul}"><br>
+                    <label for="div">Div(/)</label>
+                    <input type="checkbox" id="div" name="withOperationsDiv" th:checked="*{withOperationsDiv}"><br><br>
+                </div>
+                <br>
+
+                <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" ></p>
+
             </form>
+
         </div>
-        <div class ="col-wide-4 col-mid-4 hideIfMobile">
+        <div class ="col-wide-4 col-mid-4 col-mobile-0">
             <img class="resize-smaller-not-bigger" src="" th:src="@{/images/mathe-prinz-zauberstab.svg}" />
         </div>
-        <div class ="col-wide-2 col-mid-2 col-mobile-1"></div>
+        <div class ="col-wide-2 col-mid-2 col-mobile-0"></div>
     </div>
 
     <!-- FOOTER -->
     <div class="row">
-        <div class ="col-wide-3 col-mid-1 hideIfMobile"></div>
-        <div class ="col-wide-6 col-mid-10">
+        <div class ="col-wide-3 col-mid-1 col-mobile-0"></div>
+        <div class ="col-wide-6 col-mid-10 col-mobile-12">
             <div class="horizontal-center">
                 <p>Matheprinz auf server-121.de</p>
             </div>
         </div>
-        <div class ="col-wide-3 col-mid-1 hideIfMobile"></div>
+        <div class ="col-wide-3 col-mid-1 col-mobile-0"></div>
     </div>
 
 
