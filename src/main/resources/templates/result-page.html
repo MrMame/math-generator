@@ -3,7 +3,7 @@
 <head xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/mathe-prinz-result.css}"/>
-    <title>Title</title>
+    <title>Aufgaben</title>
 </head>
 <body>
     <div class="row">
@@ -12,7 +12,6 @@
             <div class="resultColumn">
                 <th:block th:each="formula,iterState : ${theFormulas}">
                     <p th:text="${formula.toStringWithRandomBlankNumber()}" class="exercise" >dummy</p>
-
                 </th:block>
             </div>
         </div>
