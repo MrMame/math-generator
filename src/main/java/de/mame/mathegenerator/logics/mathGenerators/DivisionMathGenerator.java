@@ -1,10 +1,14 @@
 package de.mame.mathegenerator.logics.mathGenerators;
 
+import de.mame.mathegenerator.logics.numberPools.NumberPool;
+import de.mame.mathegenerator.logics.numberPools.RandomNumberPool;
 import de.mame.mathegenerator.model.formulas.Formula;
 import de.mame.mathegenerator.model.formulas.formulaMembers.mathOperators.DivMathOperator;
 import de.mame.mathegenerator.model.formulas.formulaMembers.mathOperators.EqualsMathOperator;
 import de.mame.mathegenerator.model.formulas.formulaMembers.mathOperators.RemainMathOperator;
 import de.mame.mathegenerator.model.formulas.formulaMembers.numbers.RealNumber;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -15,50 +19,59 @@ import java.util.Random;
 public class DivisionMathGenerator
     implements MathGenerator{
 
-    private Integer numberOfExercises;
-    private Integer numberRangeStart;
-    private Integer numberRangeEnd;
+    private Integer _numberOfExercises;
+    private Integer _numberRangeStart;
+    private Integer _numberRangeEnd;
+
+    private NumberPool _numberPool;
 
     @Override
-    public void set_numberOfExercises(Integer _numberOfExercises) {
-        this.numberOfExercises = _numberOfExercises;
+    public void set_numberOfExercises(Integer numberOfExercises) {
+        this._numberOfExercises = numberOfExercises;
     }
     @Override
     public Integer get_numberOfExercises() {
-        return this.numberOfExercises;
+        return this._numberOfExercises;
     }
 
     @Override
     public void set_numberRangeStart(Integer startValue) {
-        this.numberRangeStart = startValue;
+        this._numberRangeStart = startValue;
     }
     @Override
     public Integer get_numberRangeStart() {
-        return this.numberRangeStart;
+        return this._numberRangeStart;
     }
 
     @Override
     public void set_numberRangeEnd(Integer endValue) {
-        this.numberRangeEnd = endValue;
+        this._numberRangeEnd = endValue;
     }
     @Override
     public Integer get_numberRangeEnd() {
-        return this.numberRangeEnd;
+        return this._numberRangeEnd;
+    }
+
+    @Autowired
+    public DivisionMathGenerator(@Qualifier("randomNumberPool") NumberPool numberPool) {
+        this._numberPool = numberPool;
     }
 
     @Override
     public List<Formula> createExercises() {
         // Check necessary parameters
-        if(this.numberRangeStart == null){throw new IllegalArgumentException();}
-        if(this.numberRangeEnd == null){throw new IllegalArgumentException();}
-        if(this.numberOfExercises == null){throw new IllegalArgumentException();}
-        if(this.numberOfExercises <= 0){return new ArrayList<Formula>(); }
-        if(this.numberRangeEnd < this.numberRangeStart){
+        if(this._numberRangeStart == null){throw new IllegalArgumentException();}
+        if(this._numberRangeEnd == null){throw new IllegalArgumentException();}
+        if(this._numberOfExercises == null){throw new IllegalArgumentException();}
+        if(this._numberOfExercises <= 0){return new ArrayList<Formula>(); }
+
+        if(this._numberRangeEnd < this._numberRangeStart){
             // switch start/end if start has higher value than beginning
-            Integer tmp = this.numberRangeEnd;
-            this.numberRangeEnd = this.numberRangeStart;
-            this.numberRangeStart = tmp;
+            Integer tmp = this._numberRangeEnd;
+            this._numberRangeEnd = this._numberRangeStart;
+            this._numberRangeStart = tmp;
         }
+
         // create list of string
         return createListOfFormulas();
     }
@@ -78,13 +91,14 @@ public class DivisionMathGenerator
         EqualsMathOperator theEqualMathOperator = new EqualsMathOperator();
         RemainMathOperator theRemainMathOperator = new RemainMathOperator();
 
-        Integer randomizerRangeEndNumber = this.numberRangeEnd+1;
+        this._numberPool.initPool(this._numberRangeStart,this._numberRangeEnd);
 
-        for(Integer i = 0;i<this.numberOfExercises;i++){
+        Integer randomizerRangeEndNumber = this._numberRangeEnd +1;
+        for(Integer i = 0; i<this._numberOfExercises; i++){
             // get the first number inside the range
-            numA = theRand.nextInt(this.numberRangeStart,randomizerRangeEndNumber);
+            numA = this._numberPool.getNumberFromPool();
             // Get the second random number, but in the range of numA and Range End.
-            numB = (this.numberRangeEnd-numA<=0) ? 0: theRand.nextInt(this.numberRangeEnd-numA);
+            numB = theRand.nextInt(1,this._numberRangeEnd -numA+1);
 
             // NumA shall always be bigger then numB, so we don't get results lower then zero
             if(numB > numA){
@@ -93,7 +107,7 @@ public class DivisionMathGenerator
                 numA = switchTmp;
             }
 
-            // Division by zero is not allowed to us
+            // Division by zero is not allowed.
             if(numA <= 0 || numB <= 0){
                 result = 0;
                 remain = 0;
