@@ -2,7 +2,6 @@ package de.mame.mathegenerator.model.formDatas;
 
 public class MainPageFormData {
     Integer numberOfExercises=100;
-
     Integer exercisesNumberRangeStart=1;
     Integer exercisesNumberRangeEnd=100;
 
