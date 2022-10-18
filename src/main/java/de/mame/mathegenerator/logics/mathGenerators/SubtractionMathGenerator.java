@@ -93,7 +93,7 @@ public class SubtractionMathGenerator
             // get the first number inside the range
             numA = this._numberPool.getNumberFromPool();
             // Get the second random number, but in the range of numA and Range End.
-            numB = (this._numberRangeEnd -numA<=0) ? 0: theRand.nextInt(this._numberRangeEnd -numA);
+            numB = theRand.nextInt(1,this._numberRangeEnd -numA+1);
 
             // We don't want negativ results
             if(numA > numB){
