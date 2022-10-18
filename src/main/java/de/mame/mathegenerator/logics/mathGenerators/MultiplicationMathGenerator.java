@@ -86,16 +86,19 @@ public class MultiplicationMathGenerator
 
 
         // By using the results square we ensure that our exercises will not exceed the maximum range
-        Double squareOfResult = (Math.sqrt(this._numberRangeEnd.doubleValue()));
-        Integer randomizerRangeEndNumber = squareOfResult.intValue()+1;
+        Double squareOfEndNumber = (Math.sqrt(this._numberRangeEnd.doubleValue()));
+        Double squareOfStartNumber = (Math.sqrt(this._numberRangeStart.doubleValue()));
+        Integer randomizerRangeEndNumber = Math.toIntExact(Math.round(squareOfEndNumber) + 1);
+        Integer randomizerRangeStartNumber = Math.toIntExact(Math.round(squareOfStartNumber));
 
-        this._numberPool.initPool(this._numberRangeStart,randomizerRangeEndNumber);
+        this._numberPool.initPool(randomizerRangeStartNumber,
+                                    randomizerRangeEndNumber);
 
         for(Integer i = 0; i<this._numberOfExercises; i++){
             // get the first number inside the range
             numA = this._numberPool.getNumberFromPool();
             // Get the second random number, but in the range of numA and Range End.
-            numB = theRand.nextInt(1,randomizerRangeEndNumber);
+            numB = theRand.nextInt(randomizerRangeStartNumber,randomizerRangeEndNumber);
 
             result = numA * numB;
 
