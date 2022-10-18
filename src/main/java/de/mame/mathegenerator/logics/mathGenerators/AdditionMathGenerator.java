@@ -1,9 +1,12 @@
 package de.mame.mathegenerator.logics.mathGenerators;
 
+import de.mame.mathegenerator.logics.numberPools.NumberPool;
 import de.mame.mathegenerator.model.formulas.Formula;
 import de.mame.mathegenerator.model.formulas.formulaMembers.mathoperators.AddMathOperator;
 import de.mame.mathegenerator.model.formulas.formulaMembers.mathoperators.EqualsMathOperator;
 import de.mame.mathegenerator.model.formulas.formulaMembers.numbers.RealNumber;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -20,8 +23,7 @@ public class AdditionMathGenerator
 
     private final Random _theRand = new Random();
 
-    private ArrayList<Integer> _randomNumberPool;
-
+    private NumberPool _theRandomNumberPool;
 
     @Override
     public void set_numberOfExercises(Integer _numberOfExercises) {
@@ -31,7 +33,6 @@ public class AdditionMathGenerator
     public Integer get_numberOfExercises() {
         return this._numberOfExercises;
     }
-
     @Override
     public void set_numberRangeStart(Integer startValue) {
         this._numberRangeStart = startValue;
@@ -40,7 +41,6 @@ public class AdditionMathGenerator
     public Integer get_numberRangeStart() {
         return this._numberRangeStart;
     }
-
     @Override
     public void set_numberRangeEnd(Integer endValue) {
         this._numberRangeEnd = endValue;
@@ -51,6 +51,13 @@ public class AdditionMathGenerator
     }
 
 
+
+
+    @Autowired
+    public AdditionMathGenerator(@Qualifier("randomNumberPool")
+                                 NumberPool theNumberPool) {
+        this._theRandomNumberPool = theNumberPool;
+    }
 
     @Override
     public List<Formula> createExercises() {
@@ -72,8 +79,6 @@ public class AdditionMathGenerator
     private List<Formula> createListOfFormulas() {
         List<Formula> theFormulas = new ArrayList<Formula>();
 
-
-
         Integer numA;
         Integer numB;
         Integer result;
@@ -83,11 +88,11 @@ public class AdditionMathGenerator
         Integer randomizerRangeEndNumber = this._numberRangeEnd +1;
 
 
-        this.initRandomNumberPool();
+        this._theRandomNumberPool.initPool(this._numberRangeStart, this._numberRangeEnd);
 
         for(Integer i = 0; i<this._numberOfExercises; i++){
             // get the first number inside the range
-            numA = getRandomNumberFromPool();     //_theRand.nextInt( this._numberRangeStart, randomizerRangeEndNumber);
+            numA = _theRandomNumberPool.getNumberFromPool();
             numB = _theRand.nextInt(1,randomizerRangeEndNumber-numA+1);
 
             result = numA + numB;
@@ -115,30 +120,4 @@ public class AdditionMathGenerator
     }
 
 
-
-    /* The random number pool is a list of numbers from start to end.
-    * */
-    private void initRandomNumberPool(){
-        System.out.println("Init new RandomNumberPool...");
-        this._randomNumberPool = new ArrayList<Integer>();
-        for(Integer i = this._numberRangeStart; i<this._numberRangeEnd; i++){
-            this._randomNumberPool.add(i);}
-        }
-
-
-    private Integer getRandomNumberFromPool(){
-        if(this._randomNumberPool == null)throw new IllegalArgumentException("RandomNumberPool is null !");
-        /* ReInit if already empty */
-        if(this._randomNumberPool.isEmpty()){
-            this.initRandomNumberPool();
-        }
-        /* Return a random number from the List. This number can be returned
-        * next time only after all other numbers were taken from the list. */
-        int numberIdx = _theRand.nextInt(this._randomNumberPool.size());
-        Integer returnNumber = this._randomNumberPool.get(numberIdx);
-        System.out.println("Index " + numberIdx + " zahl " + returnNumber);
-        this._randomNumberPool.remove(numberIdx);
-        return returnNumber;
-
-    }
 }

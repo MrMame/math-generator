@@ -1,6 +1,6 @@
-package de.mame.mathegenerator.model;
+package de.mame.mathegenerator.model.formDatas;
 
-public class MainFormData {
+public class MainPageFormData {
     Integer numberOfExercises;
 
     Integer exercisesNumberRangeStart;
@@ -69,7 +69,7 @@ public class MainFormData {
         this.exercisesPacketSize = exercisesPacketSize;
     }
 
-    public MainFormData() {
+    public MainPageFormData() {
         numberOfExercises = 10;
     }
 

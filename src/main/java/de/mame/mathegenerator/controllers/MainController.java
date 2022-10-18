@@ -1,7 +1,7 @@
 package de.mame.mathegenerator.controllers;
 
 import de.mame.mathegenerator.logics.mathGenerators.*;
-import de.mame.mathegenerator.model.MainFormData;
+import de.mame.mathegenerator.model.formDatas.MainPageFormData;
 import de.mame.mathegenerator.model.formulas.Formula;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 @RequestMapping("/")
@@ -30,12 +29,12 @@ public class MainController {
     @GetMapping("/")
     public String showMainPage(Model model){
         model.addAttribute("theDate", new Date());
-        model.addAttribute("theFormData", new MainFormData());
+        model.addAttribute("theFormData", new MainPageFormData());
         return "main-page";
     }
 
     @PostMapping("/")
-    public String showMainPage(@ModelAttribute MainFormData theFormData, Model model){
+    public String showMainPage(@ModelAttribute MainPageFormData theFormData, Model model){
         model.addAttribute("theFormData",theFormData);
         System.out.println("Received number of exercises :" + theFormData.getNumberOfExercises());
 
