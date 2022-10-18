@@ -1,5 +1,6 @@
-package de.mame.mathegenerator.logics.mathGenerators;
+package de.mame.mathegenerator.logics.services;
 
+import de.mame.mathegenerator.logics.mathGenerators.*;
 import de.mame.mathegenerator.model.formulas.Formula;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,22 +8,22 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class MathGeneratorService {
+public class MathGeneratorsService {
 
-    private final AdditionMathGenerator       _theAdditionMathGenerator;
-    private final DivisionMathGenerator       _theDivisionMathGenerator;
+    private final AdditionMathGenerator _theAdditionMathGenerator;
+    private final DivisionMathGenerator _theDivisionMathGenerator;
     private final GroupMathGenerator _theGroupOfMathGenerators;
     private final MultiplicationMathGenerator _theMultiplicationMathGenerator;
-    private final SubtractionMathGenerator    _theSubtractionMathGenerator;
+    private final SubtractionMathGenerator _theSubtractionMathGenerator;
 
 
 
     @Autowired
-    public MathGeneratorService(AdditionMathGenerator theAdditionMathGenerator,
-                                DivisionMathGenerator theDivisionMathGenerator,
-                                GroupMathGenerator theGroupOfMathGenerators,
-                                MultiplicationMathGenerator theMultiplicationMathGenerator,
-                                SubtractionMathGenerator theSubtractionMathGenerator) {
+    public MathGeneratorsService(AdditionMathGenerator theAdditionMathGenerator,
+                                 DivisionMathGenerator theDivisionMathGenerator,
+                                 GroupMathGenerator theGroupOfMathGenerators,
+                                 MultiplicationMathGenerator theMultiplicationMathGenerator,
+                                 SubtractionMathGenerator theSubtractionMathGenerator) {
         this._theAdditionMathGenerator= theAdditionMathGenerator;
         this._theDivisionMathGenerator = theDivisionMathGenerator;
         this._theGroupOfMathGenerators = theGroupOfMathGenerators;

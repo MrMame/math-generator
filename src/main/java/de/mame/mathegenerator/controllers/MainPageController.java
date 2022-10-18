@@ -1,6 +1,6 @@
 package de.mame.mathegenerator.controllers;
 
-import de.mame.mathegenerator.logics.mathGenerators.*;
+import de.mame.mathegenerator.logics.services.MathGeneratorsService;
 import de.mame.mathegenerator.model.formDatas.MainPageFormData;
 import de.mame.mathegenerator.model.formulas.Formula;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +16,14 @@ import java.util.Date;
 
 @Controller
 @RequestMapping("/")
-public class MainController {
+public class MainPageController {
 
-    private MathGeneratorService _mathGeneratorService;
+    private MathGeneratorsService _mathGeneratorsService;
 
 
     @Autowired
-    public MainController(MathGeneratorService mathGeneratorService) {
-        this._mathGeneratorService = mathGeneratorService;
+    public MainPageController(MathGeneratorsService mathGeneratorsService) {
+        this._mathGeneratorsService = mathGeneratorsService;
     }
 
     @GetMapping("/")
@@ -43,7 +43,7 @@ public class MainController {
 
         /* If Addition is checked, create Formulas to return list */
         if(theFormData.getWithOperationsAdd()){
-            formulas.addAll(this._mathGeneratorService.CreateAdditionFormulas(
+            formulas.addAll(this._mathGeneratorsService.CreateAdditionFormulas(
                     theFormData.getExercisesNumberRangeStart(),
                     theFormData.getExercisesNumberRangeEnd(),
                     theFormData.getNumberOfExercises()));
@@ -51,7 +51,7 @@ public class MainController {
 
         /* If Subtraction is checked, create Formulas to return list */
         if(theFormData.getWithOperationsSub()){
-            formulas.addAll(this._mathGeneratorService.CreateSubtractionFormulas(
+            formulas.addAll(this._mathGeneratorsService.CreateSubtractionFormulas(
                     theFormData.getExercisesNumberRangeStart(),
                     theFormData.getExercisesNumberRangeEnd(),
                     theFormData.getNumberOfExercises()));
@@ -59,7 +59,7 @@ public class MainController {
 
         /* If Multiplication is checked, create Formulas to return list */
         if(theFormData.getWithOperationsMul()){
-            formulas.addAll(this._mathGeneratorService.CreateMultiplicationFormulas(
+            formulas.addAll(this._mathGeneratorsService.CreateMultiplicationFormulas(
                     theFormData.getExercisesNumberRangeStart(),
                     theFormData.getExercisesNumberRangeEnd(),
                     theFormData.getNumberOfExercises()));
@@ -67,7 +67,7 @@ public class MainController {
 
         /* If division is checked, create Formulas to return list */
         if(theFormData.getWithOperationsDiv()){
-            formulas.addAll(this._mathGeneratorService.CreateDivisionFormulas(
+            formulas.addAll(this._mathGeneratorsService.CreateDivisionFormulas(
                     theFormData.getExercisesNumberRangeStart(),
                     theFormData.getExercisesNumberRangeEnd(),
                     theFormData.getNumberOfExercises()));

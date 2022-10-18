@@ -1,9 +1,9 @@
 package de.mame.mathegenerator.logics.mathGenerators;
 
 import de.mame.mathegenerator.model.formulas.Formula;
-import de.mame.mathegenerator.model.formulas.formulaMembers.mathoperators.DivMathOperator;
-import de.mame.mathegenerator.model.formulas.formulaMembers.mathoperators.EqualsMathOperator;
-import de.mame.mathegenerator.model.formulas.formulaMembers.mathoperators.RemainMathOperator;
+import de.mame.mathegenerator.model.formulas.formulaMembers.mathOperators.DivMathOperator;
+import de.mame.mathegenerator.model.formulas.formulaMembers.mathOperators.EqualsMathOperator;
+import de.mame.mathegenerator.model.formulas.formulaMembers.mathOperators.RemainMathOperator;
 import de.mame.mathegenerator.model.formulas.formulaMembers.numbers.RealNumber;
 import org.springframework.stereotype.Component;
 

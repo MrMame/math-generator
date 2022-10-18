@@ -1,4 +1,4 @@
-package de.mame.mathegenerator.model.formulas.formulaMembers.mathoperators;
+package de.mame.mathegenerator.model.formulas.formulaMembers.mathOperators;
 
 public class RemainMathOperator
     implements MathOperator{

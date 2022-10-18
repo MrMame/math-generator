@@ -2,8 +2,8 @@ package de.mame.mathegenerator.logics.mathGenerators;
 
 import de.mame.mathegenerator.logics.numberPools.NumberPool;
 import de.mame.mathegenerator.model.formulas.Formula;
-import de.mame.mathegenerator.model.formulas.formulaMembers.mathoperators.AddMathOperator;
-import de.mame.mathegenerator.model.formulas.formulaMembers.mathoperators.EqualsMathOperator;
+import de.mame.mathegenerator.model.formulas.formulaMembers.mathOperators.AddMathOperator;
+import de.mame.mathegenerator.model.formulas.formulaMembers.mathOperators.EqualsMathOperator;
 import de.mame.mathegenerator.model.formulas.formulaMembers.numbers.RealNumber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
