@@ -86,6 +86,8 @@ Elements
 ------------------------------------------*/
 .exercise{
     font-family:'Courier New', Arial;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 

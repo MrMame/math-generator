@@ -41,37 +41,13 @@ public class MainPageController {
         /* Formulas return list for the response*/
         ArrayList<Formula> formulas = new ArrayList<>();
 
-        /* If Addition is checked, create Formulas to return list */
-        if(theFormData.getWithOperationsAdd()){
-            formulas.addAll(this._mathGeneratorsService.CreateAdditionFormulas(
-                    theFormData.getExercisesNumberRangeStart(),
-                    theFormData.getExercisesNumberRangeEnd(),
-                    theFormData.getNumberOfExercises()));
-        }
-
-        /* If Subtraction is checked, create Formulas to return list */
-        if(theFormData.getWithOperationsSub()){
-            formulas.addAll(this._mathGeneratorsService.CreateSubtractionFormulas(
-                    theFormData.getExercisesNumberRangeStart(),
-                    theFormData.getExercisesNumberRangeEnd(),
-                    theFormData.getNumberOfExercises()));
-        }
-
-        /* If Multiplication is checked, create Formulas to return list */
-        if(theFormData.getWithOperationsMul()){
-            formulas.addAll(this._mathGeneratorsService.CreateMultiplicationFormulas(
-                    theFormData.getExercisesNumberRangeStart(),
-                    theFormData.getExercisesNumberRangeEnd(),
-                    theFormData.getNumberOfExercises()));
-        }
-
-        /* If division is checked, create Formulas to return list */
-        if(theFormData.getWithOperationsDiv()){
-            formulas.addAll(this._mathGeneratorsService.CreateDivisionFormulas(
-                    theFormData.getExercisesNumberRangeStart(),
-                    theFormData.getExercisesNumberRangeEnd(),
-                    theFormData.getNumberOfExercises()));
-        }
+        formulas = this._mathGeneratorsService.CreateMixedFormulas(theFormData.getExercisesNumberRangeStart(),
+                                                                    theFormData.getExercisesNumberRangeEnd(),
+                                                                    theFormData.getNumberOfExercises(),
+                                                                    theFormData.getWithOperationsAdd(),
+                                                                    theFormData.getWithOperationsSub(),
+                                                                    theFormData.getWithOperationsMul(),
+                                                                    theFormData.getWithOperationsDiv());
 
         /* Return the Formulas to the model*/
         model.addAttribute("theFormulas", formulas);
