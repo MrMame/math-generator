@@ -10,7 +10,8 @@ import javax.validation.constraints.Min;
 public class MainPageFormData {
 
 
-    @Min(value=1,message="Die Zahl muss grösser oder gleich 1 sein")
+    @Min(value=1,message="Die Zahl muss grösser oder gleich {value} sein")
+    @Max(value=10000,message="Die Zahl darf nicht grösser als {value} sein")
     private Integer numberOfExercises=100;
     @Min(value=1,message="Die Zahl muss grösser oder gleich 1 sein")
     @Max(value=1000000000,message="Die Zahl muss kleiner 1000000000 sein")

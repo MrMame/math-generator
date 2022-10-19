@@ -28,22 +28,34 @@
 
             <form id="inputForm" action="#" th:action="@{/}" th:object="${theFormData}" th:target="_blank" method="post">
 
-                <label for="numberOfExercises">Anzahl Aufgaben</label><br>
+                <label for="numberOfExercises" th:text="'Wieviele Aufgaben möchten Sie [1-10000]'"></label><br>
                 <input type="text" class="full-width" id="numberOfExercises" th:field="*{numberOfExercises}" >
-                <p th:if="${#fields.hasErrors('numberOfExercises')}" class="validatorMessage" th:errors="*{numberOfExercises}">Invalid</p>
+                <div class ="validationError"th:if="${#fields.hasErrors('numberOfExercises')}">
+                    <img class ="resize-smaller-not-bigger" src="" th:src="@{/images/mathe-prinz-symbol-error.svg}" />
+                    <p class="validationMessage" th:errors="*{numberOfExercises}">Invalid</p>
+                </div>
+
                 <br>
 
-                <label for="exercisesNumberRangeStart">Erste Zahl des Zahlenbereichs</label><br>
+                <label for="exercisesNumberRangeStart">Erste Zahl des Zahlenbereichs </label><br>
                 <input type="text" class="full-width" id="exercisesNumberRangeStart" th:field="*{exercisesNumberRangeStart}" >
-                <p th:if="${#fields.hasErrors('exercisesNumberRangeStart')}" class="validatorMessage" th:errors="*{exercisesNumberRangeStart}">Invalid</p>
+                <div class ="validationError"th:if="${#fields.hasErrors('exercisesNumberRangeStart')}">
+                    <img class ="resize-smaller-not-bigger" src="" th:src="@{/images/mathe-prinz-symbol-error.svg}" />
+                    <p class="validationMessage" th:errors="*{exercisesNumberRangeStart}">Invalid</p>
+                </div>
+
                 <br>
 
                 <label for="exercisesNumberRangeEnd">Letzte Zahl des Zahlenbereichs</label><br>
                 <input type="text" class="full-width" id="exercisesNumberRangeEnd" th:field="*{exercisesNumberRangeEnd}" >
-                <p th:if="${#fields.hasErrors('exercisesNumberRangeEnd')}" class="validatorMessage" th:errors="*{exercisesNumberRangeEnd}">Invalid</p>
-                <br>
+                <div class ="validationError"th:if="${#fields.hasErrors('exercisesNumberRangeEnd')}">
+                    <img class ="resize-smaller-not-bigger" src="" th:src="@{/images/mathe-prinz-symbol-error.svg}" />
+                    <p class="validationMessage" th:errors="*{exercisesNumberRangeEnd}">Invalid</p>
+                </div>
 
                 <br>
+                <br>
+
                 <div class="operationCheckboxes">
                     <label for="add">Add(+)</label>
                     <input type="checkbox" id="add" name="withOperationsAdd" th:checked="*{withOperationsAdd}"><br>
@@ -56,6 +68,7 @@
                     <label for="div">Div(/)</label>
                     <input type="checkbox" id="div" name="withOperationsDiv" th:checked="*{withOperationsDiv}"><br>
                 </div>
+
                 <br>
 
                 <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" ></p>

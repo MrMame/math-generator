@@ -146,6 +146,15 @@ ELEMENTS
     width:50%;
 }
 
-.validatorMessage{
-     background-color: red;
+.validationMessage{
+    color: red;
+    font-weight: bold;
+    padding:5px;
+    font-size: 0.7em;
+}
+
+.validationError{
+    display:flex;
+    margin-left: 5px;
+    margin-right: 5px;
 }
