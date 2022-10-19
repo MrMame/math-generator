@@ -10,14 +10,14 @@ import javax.validation.constraints.Min;
 public class MainPageFormData {
 
 
-    @Min(value=1,message="Die Zahl muss grösser oder gleich {value} sein")
-    @Max(value=10000,message="Die Zahl darf nicht grösser als {value} sein")
+    @Min(value=1,message="die Anzahl der Aufgaben muss mindestens {value} betragen")
+    @Max(value=10000,message="Die Anzahl der Aufgaben darf höchstens {value} betragen")
     private Integer numberOfExercises=100;
-    @Min(value=1,message="Die Zahl muss grösser oder gleich 1 sein")
-    @Max(value=1000000000,message="Die Zahl muss kleiner 1000000000 sein")
+    @Min(value=1,message="Das erlaubte Minimum des Zahlenbereich-Anfangs liegt bei {value}")
+    @Max(value=1000000000,message="Das erlaubte Maximum des Zahlenbereich-Anfangs liegt bei {value}")
     private Integer exercisesNumberRangeStart=1;
-    @Min(value=1,message="Die Zahl muss grösser oder gleich 1 sein")
-    @Max(value=1000000000,message="Die Zahl muss kleiner 1000000000 sein")
+    @Min(value=1,message="Das erlaubte Minimum des Zahlenbereich-Endes liegt bei {value}")
+    @Max(value=1000000000,message="Das erlaubte Maximum des Zahlenbereich-Endes liegt bei {value}")
     private Integer exercisesNumberRangeEnd=100;
 
     private Boolean withOperationsAdd=false;
