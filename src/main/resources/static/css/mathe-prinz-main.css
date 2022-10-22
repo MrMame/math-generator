@@ -113,6 +113,10 @@ Images resizable
 .full-width{
     width:100%;
 }
+.half-width{
+    width:100%;
+
+}
 
 .text-center{
     display:flex;
@@ -171,8 +175,40 @@ ELEMENTS
     padding:5px;
 
 }
-
 #github-project-link{
     display: flex;
     align-items: center;
 }
+
+
+section{
+    padding-top:20px;
+    padding-bottom:10px;
+}
+
+#inputSection{
+
+}
+
+#formButtonsSection{
+}
+
+#checkboxSection{
+}
+.grid{
+display:flex;
+}
+.grid li {
+  width: 50%;
+  list-style-type:none;
+}
+
+#operationCheckboxes > li{
+    padding-left:20px;
+    padding-right:20px;
+}
+
+legend{
+    padding-bottom:10px;
+}
+
