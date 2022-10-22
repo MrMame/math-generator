@@ -32,7 +32,8 @@
 
                 <section id="inputSection">
                     <legend>Anzahl</legend>
-                    <input type="number" class="full-width" id="numberOfExercises" th:field="*{numberOfExercises}" >
+                    <input type="number" class="full-width" id="numberOfExercises" th:field="*{numberOfExercises}"
+                            min="10" max="500" step="1" value="10">
                     <div class ="validationError"th:if="${#fields.hasErrors('numberOfExercises')}">
                         <img class ="resize-smaller-not-bigger" th:src="@{/images/mathe-prinz-symbol-error.svg}"
                                                                    src="../static/images/mathe-prinz-symbol-error.svg"/>
@@ -45,7 +46,8 @@
                     <legend>Rechenbereich</legend>
                     <ul class="grid">
                         <li><label for="exercisesNumberRangeStart">Von:</label>
-                            <input type="number" class="half-width" id="exercisesNumberRangeStart" th:field="*{exercisesNumberRangeStart}" >
+                            <input type="number" class="half-width" id="exercisesNumberRangeStart" th:field="*{exercisesNumberRangeStart}"
+                                   min="1" max="9999" step="1" value="1">
                             <div class ="validationError"th:if="${#fields.hasErrors('exercisesNumberRangeStart')}">
                                 <img class ="resize-smaller-not-bigger"  th:src="@{/images/mathe-prinz-symbol-error.svg}"
                                      src="../static/images/mathe-prinz-symbol-error.svg" />
@@ -53,7 +55,8 @@
                             </div>
                         </li>
                         <li><label for="exercisesNumberRangeEnd">Bis:</label>
-                            <input type="number" class="half-width" id="exercisesNumberRangeEnd" th:field="*{exercisesNumberRangeEnd}" >
+                            <input type="number" class="half-width" id="exercisesNumberRangeEnd" th:field="*{exercisesNumberRangeEnd}"
+                                   min="1" max="9999" step="1" value="100">
                             <div class ="validationError"th:if="${#fields.hasErrors('exercisesNumberRangeEnd')}">
                                 <img class ="resize-smaller-not-bigger" th:src="@{/images/mathe-prinz-symbol-error.svg}"
                                      src="../static/images/mathe-prinz-symbol-error.svg"  />
