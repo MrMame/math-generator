@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link type="text/css" th:href="@{/css/mathe-prinz-main.css}" href="../static/css/mathe-prinz-main.css"
           rel="stylesheet" />
+    <script src="../static/js/main-page-validator.js"></script>
     <title>Matheprinz</title>
 </head>
 <body>
@@ -97,6 +98,8 @@
                 <section id="formButtonsSection">
                     <button type="submit" value="Erstellen" >Erstellen</button>
                     <button type="reset" value="Zurücksetzen">Zurücksetzen</button>
+                    <button type="button" value="Validieren" onclick="validateFormState()">Validieren</button>
+
                 </section>
             </form>
 
