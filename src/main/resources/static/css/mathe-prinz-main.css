@@ -105,7 +105,8 @@ Images resizable
 .flex-center{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    padding:20px;
 }
 
 
@@ -120,6 +121,7 @@ Images resizable
 
 
 
+
 /* ------------------------------------------
 COLORS 
 ------------------------------------------*/
@@ -131,7 +133,9 @@ COLORS
     background-color: antiquewhite;
 }
 
-
+a.black-text{
+    color:#000000;
+}
 
 /* ------------------------------------------
 ELEMENTS
@@ -157,4 +161,18 @@ ELEMENTS
     display:flex;
     margin-left: 5px;
     margin-right: 5px;
+}
+
+
+
+
+#github-logo{
+    width:30px;
+    padding:5px;
+
+}
+
+#github-project-link{
+    display: flex;
+    align-items: center;
 }
