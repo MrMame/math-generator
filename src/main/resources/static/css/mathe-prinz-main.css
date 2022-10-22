@@ -105,8 +105,10 @@ Images resizable
 .flex-center{
     display: flex;
     align-items: center;
+    #justify-content: space-evenly;
+}
+.flex-space-evenly{
     justify-content: space-evenly;
-    padding:20px;
 }
 
 
@@ -167,9 +169,24 @@ ELEMENTS
     margin-right: 5px;
 }
 
+.grid{
+    display:flex;
+}
+.grid li {
+    width: 50%;
+    list-style-type:none;
+}
+
+#operatorUl.grid li {
+  display:block;
+}
 
 
 
+
+/* ------------------------------------------
+FOOTER
+------------------------------------------*/
 #github-logo{
     width:30px;
     padding:5px;
@@ -180,27 +197,12 @@ ELEMENTS
     align-items: center;
 }
 
+/* ------------------------------------------
+FORM
+------------------------------------------*/
 
 section{
-    padding-top:20px;
     padding-bottom:10px;
-}
-
-#inputSection{
-
-}
-
-#formButtonsSection{
-}
-
-#checkboxSection{
-}
-.grid{
-display:flex;
-}
-.grid li {
-  width: 50%;
-  list-style-type:none;
 }
 
 #operationCheckboxes > li{
@@ -209,6 +211,31 @@ display:flex;
 }
 
 legend{
+    font-weight:bold;
+    padding-top:20px;
     padding-bottom:10px;
 }
 
+label{
+    font-size: 0.85em;
+}
+
+button{
+    width: max(33%,120px);
+    height:30px;
+    margin-left:auto;
+    margin-right:auto;
+    font-color:black;
+}
+
+#formButtonsSection{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:40px;
+}
+
+.math-symbol{
+    width:29px;
+    margin-left:5px;
+}
