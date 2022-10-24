@@ -48,7 +48,7 @@
                             <div id="ValErrExNumRngStrtInp" class ="validationError">
                                 <img class ="resize-smaller-not-bigger"  th:src="@{/images/mathe-prinz-symbol-error.svg}"
                                      src="../static/images/mathe-prinz-symbol-error.svg" />
-                                <p class="validationMessage" th:errors="*{exercisesNumberRangeStart}">Invalid</p>
+                                <p class="validationMessage" >Der Beginn muss zwischen 1 und 9999 liegen</p>
                             </div>
                         </li>
                         <li><label for="exercisesNumberRangeEnd">Bis:</label>
@@ -57,7 +57,7 @@
                             <div id="ValErrExNumRngEndInp" class ="validationError">
                                 <img class ="resize-smaller-not-bigger" th:src="@{/images/mathe-prinz-symbol-error.svg}"
                                      src="../static/images/mathe-prinz-symbol-error.svg"  />
-                                <p class="validationMessage" th:errors="*{exercisesNumberRangeEnd}">Invalid</p>
+                                <p class="validationMessage" >Das Ende muss zwischen 1 und 9999 liegen</p>
                             </div>
                         </li>
                     </ul>
