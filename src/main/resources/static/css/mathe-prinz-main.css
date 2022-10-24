@@ -181,7 +181,9 @@ ELEMENTS
   display:block;
 }
 
-
+.hidden{
+    display:none;
+}
 
 
 /* ------------------------------------------
@@ -239,3 +241,9 @@ button{
     width:29px;
     margin-left:5px;
 }
+
+input:invalid {
+  border: 2px dashed red;
+}
+
+

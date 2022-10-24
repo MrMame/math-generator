@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link type="text/css" th:href="@{/css/mathe-prinz-main.css}" href="../static/css/mathe-prinz-main.css"
           rel="stylesheet" />
-    <script src="../static/js/main-page-validator.js"></script>
+    <script type="module" src="../static/js/main.js"></script>
     <title>Matheprinz</title>
 </head>
 <body>
@@ -28,28 +28,23 @@
     <div class="row background-color-secondary">
         <div class ="col-wide-2 col-mid-2 col-mobile-0"></div>
         <div class ="col-wide-4 col-mid-4 col-mobile-12">
-
             <form id="inputForm" action="#" th:action="@{/}" th:object="${theFormData}" th:target="_blank" method="post">
-
                 <section id="inputSection">
                     <legend>Anzahl</legend>
-                    <input type="number" class="full-width" id="numberOfExercises" th:field="*{numberOfExercises}"
-                            min="10" max="500" step="1" value="10">
-                    <div class ="validationError"th:if="${#fields.hasErrors('numberOfExercises')}">
-                        <img class ="resize-smaller-not-bigger" th:src="@{/images/mathe-prinz-symbol-error.svg}"
-                                                                   src="../static/images/mathe-prinz-symbol-error.svg"/>
-                        <p class="validationMessage" th:errors="*{numberOfExercises}">Invalid</p>
+                    <input  id="numberOfExercises" type="number" class="full-width"  th:field="*{numberOfExercises}"
+                            min="10" max="500" step="1" value="10" minlength="2" maxlength="3" required>
+                    <div id="ValidationErrorAnzahlInput" class ="validationError" >
+                        <img class ="resize-smaller-not-bigger" src="../static/images/mathe-prinz-symbol-error.svg"/>
+                        <p class="validationMessage" >Bitte geben Sie eine Zahl zwischen 10 und 500 ein</p>
                     </div>
                 </section>
-
-
-                <section>
+                <section id="inputRechenbereich">
                     <legend>Rechenbereich</legend>
                     <ul class="grid">
                         <li><label for="exercisesNumberRangeStart">Von:</label>
-                            <input type="number" class="half-width" id="exercisesNumberRangeStart" th:field="*{exercisesNumberRangeStart}"
-                                   min="1" max="9999" step="1" value="1">
-                            <div class ="validationError"th:if="${#fields.hasErrors('exercisesNumberRangeStart')}">
+                            <input id="exercisesNumberRangeStart" type="number" class="half-width"  th:field="*{exercisesNumberRangeStart}"
+                                   min="1" max="9999" step="1" value="1" required>
+                            <div id="ValErrExNumRngStrtInp" class ="validationError"th:if="${#fields.hasErrors('exercisesNumberRangeStart')}">
                                 <img class ="resize-smaller-not-bigger"  th:src="@{/images/mathe-prinz-symbol-error.svg}"
                                      src="../static/images/mathe-prinz-symbol-error.svg" />
                                 <p class="validationMessage" th:errors="*{exercisesNumberRangeStart}">Invalid</p>
@@ -57,8 +52,8 @@
                         </li>
                         <li><label for="exercisesNumberRangeEnd">Bis:</label>
                             <input type="number" class="half-width" id="exercisesNumberRangeEnd" th:field="*{exercisesNumberRangeEnd}"
-                                   min="1" max="9999" step="1" value="100">
-                            <div class ="validationError"th:if="${#fields.hasErrors('exercisesNumberRangeEnd')}">
+                                   min="1" max="9999" step="1" value="100" required>
+                            <div id="ValErrExNumRngEndInp" class ="validationError"th:if="${#fields.hasErrors('exercisesNumberRangeEnd')}">
                                 <img class ="resize-smaller-not-bigger" th:src="@{/images/mathe-prinz-symbol-error.svg}"
                                      src="../static/images/mathe-prinz-symbol-error.svg"  />
                                 <p class="validationMessage" th:errors="*{exercisesNumberRangeEnd}">Invalid</p>
@@ -66,13 +61,11 @@
                         </li>
                     </ul>
                 </section>
-
-
                 <section id="checkboxSection">
                     <legend>Aufgabenart</legend>
                     <ul id="operatorUl" class="grid">
                         <li><div class="flex-center">
-                            <input type="checkbox" id="add" name="withOperationsAdd" th:checked="*{withOperationsAdd}">
+                            <input type="checkbox" id="add" name="withOperationsAdd" th:checked="*{withOperationsAdd} checked">
                             <img id="symbol-addition" class="math-symbol" th:src="@{/images/symbol-addition.svg}"
                                  src="../static/images/symbol-addition.svg" />
                         </div></li>
@@ -93,16 +86,13 @@
                         </div></li>
                     </ul>
                 </section>
-
-                <br>
                 <section id="formButtonsSection">
-                    <button type="submit" value="Erstellen" >Erstellen</button>
+                    <button type="submit" id="submitButton" value="Erstellen" >Erstellen</button>
                     <button type="reset" value="Zurücksetzen">Zurücksetzen</button>
-                    <button type="button" value="Validieren" onclick="validateFormState()">Validieren</button>
+                    <button type="button" id="validateButton" value="Validieren" >Validieren</button>
 
                 </section>
             </form>
-
         </div>
         <div class ="col-wide-4 col-mid-4 col-mobile-0">
             <img class="resize-smaller-not-bigger" th:src="@{/images/mathe-prinz-zauberstab.svg}"
