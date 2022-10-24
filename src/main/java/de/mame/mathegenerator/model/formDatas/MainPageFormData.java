@@ -20,7 +20,7 @@ public class MainPageFormData {
     @Max(value=1000000000,message="Das erlaubte Maximum des Zahlenbereich-Endes liegt bei {value}")
     private Integer exercisesNumberRangeEnd=100;
 
-    private Boolean withOperationsAdd=false;
+    private Boolean withOperationsAdd=true;
     private Boolean withOperationsSub=false;
     private Boolean withOperationsMul=false;
     private Boolean withOperationsDiv=false;
