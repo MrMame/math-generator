@@ -16,6 +16,7 @@ export function validateForm(){
     (isExNumInvalid)? showExerciseNumberInvalidBox() : hideExerciseNumberInvalidBox();
     (isCalRngStartInvalid)? showCalulcationRangeStartValidationError(): hideCalulcationRangeStartValidationError();
     (isCalRngEndInvalid)? showCalulcationRangeEndValidationError(): hideCalulcationRangeEndValidationError();
+    (isNoOperatorSelected)? showOperatorsValidationError(): hideOperatorValidationError();
 
     // Enable/Disable submit button
     (isSubmitDisabled)? DisableSubmitButton(): EnableSubmitButton();
@@ -33,14 +34,12 @@ function hideExerciseNumberInvalidBox(){
      hideElement('ValidationErrorAnzahlInput');
 }
 
-
 function showCalulcationRangeStartValidationError(){
     showElement('ValErrExNumRngStrtInp');
 }
 function hideCalulcationRangeStartValidationError(){
     hideElement('ValErrExNumRngStrtInp');
 }
-
 
 function showCalulcationRangeEndValidationError(){
     showElement('ValErrExNumRngEndInp');
@@ -49,6 +48,12 @@ function hideCalulcationRangeEndValidationError(){
     hideElement('ValErrExNumRngEndInp');
 }
 
+function showOperatorsValidationError(){
+    showElement('ValidationErrorOperators');
+}
+function hideOperatorValidationError(){
+    hideElement('ValidationErrorOperators');
+}
 
 function getExerciseNumberInvalid(){
     let exNumInput = document.querySelector('#numberOfExercises');
