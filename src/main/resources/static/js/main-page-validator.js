@@ -5,6 +5,13 @@
 
 export function validateForm(){
 
+
+    // Remove all floating point numbers
+    removeFloatingPointFromValue('#numberOfExercises');
+    removeFloatingPointFromValue('#exercisesNumberRangeStart');
+    removeFloatingPointFromValue('#exercisesNumberRangeEnd');
+
+
     // check validities
     const isExNumInvalid = getExerciseNumberInvalid();
     const isCalRngStartInvalid = getCalulcationRangeStartInvalid();
@@ -25,6 +32,12 @@ export function validateForm(){
 
 
 /* PRIVATES ----------------------------------------------------- */
+
+function removeFloatingPointFromValue(sel){
+    let el = document.querySelector(sel);
+    let values =  el.value.split(".");
+    el.value = values[0];
+}
 
 function showExerciseNumberInvalidBox(){
      showElement('ValidationErrorAnzahlInput');
@@ -92,3 +105,4 @@ function showElement(elementId){
     const element = document.querySelector('#' + elementId);
     element.classList.remove("hidden");
 }
+
