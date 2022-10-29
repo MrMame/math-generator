@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" th:href="@{/css/mathe-prinz-main.css}"/>
+    <link type="text/css" th:href="@{/css/mathe-prinz-main.css}" href="../static/css/mathe-prinz-main.css"
+          rel="stylesheet" />
+    <script type="module" src="../static/js/main.js" th:src="@{/js/main.js}"></script>
     <title>Matheprinz</title>
 </head>
 <body>
@@ -14,7 +16,8 @@
         <div class ="col-wide-2 col-mid-2 col-mobile-0"></div>
         <div class ="col-wide-8 col-mid-8 col-mobile-12">
             <div class ="horizontal-center">
-                <img class ="resize-smaller-not-bigger" src="" th:src="@{/images/mathe-prinz-headline.svg}" />
+                <img class ="resize-smaller-not-bigger" th:src="@{/images/mathe-prinz-headline.svg}"
+                                                           src="../static/images/mathe-prinz-headline.svg"/>
                 <p class="hideIfMobile"> Mathematik-Aufgabenblätter selbst erstellen</p>
             </div>
         </div>
@@ -25,38 +28,79 @@
     <div class="row background-color-secondary">
         <div class ="col-wide-2 col-mid-2 col-mobile-0"></div>
         <div class ="col-wide-4 col-mid-4 col-mobile-12">
-
             <form id="inputForm" action="#" th:action="@{/}" th:object="${theFormData}" th:target="_blank" method="post">
-
-                <label for="numberOfExercises">Anzahl Aufgaben</label><br>
-                <input type="text" class="full-width" id="numberOfExercises" th:field="*{numberOfExercises}" ><br>
-
-                <label for="exerciseNumberRangeStart">Erste Zahl des Zahlenbereichs</label><br>
-                <input type="text" class="full-width" id="exerciseNumberRangeStart" th:field="*{exercisesNumberRangeStart}" ><br>
-                <label for="exerciseNumberRangeEnd">Letzte Zahl des Zahlenbereichs</label><br>
-                <input type="text" class="full-width" id="exerciseNumberRangeEnd" th:field="*{exercisesNumberRangeEnd}" ><br>
-                <br>
-                <div class="operationCheckboxes">
-                    <label for="add">Add(+)</label>
-                    <input type="checkbox" id="add" name="withOperationsAdd" th:checked="*{withOperationsAdd}"><br>
-                    <label for="sub">Sub(-)</label>
-                    <input type="checkbox" id="sub" name="withOperationsSub" th:checked="*{withOperationsSub}"><br>
-                </div>
-                <div class="operationCheckboxes">
-                    <label for="multi">Mul(x)</label>
-                    <input type="checkbox" id="multi" name="withOperationsMul" th:checked="*{withOperationsMul}"><br>
-                    <label for="div">Div(/)</label>
-                    <input type="checkbox" id="div" name="withOperationsDiv" th:checked="*{withOperationsDiv}"><br>
-                </div>
-                <br>
-
-                <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" ></p>
-
+                <section id="inputSection">
+                    <legend>Anzahl</legend>
+                    <input  id="numberOfExercises" type="number" class="full-width"  th:field="*{numberOfExercises}"
+                            min="10" max="500" step="1" value="10" minlength="2" maxlength="3" required>
+                    <div id="ValidationErrorAnzahlInput" class ="validationError" >
+                        <img class ="resize-smaller-not-bigger" src="../static/images/mathe-prinz-symbol-error.svg"
+                                                                th:src="@{/images/mathe-prinz-symbol-error.svg}">
+                        <p class="validationMessage" >Bitte geben Sie eine Zahl zwischen 10 und 500 ein</p>
+                    </div>
+                </section>
+                <section id="inputRechenbereich">
+                    <legend>Rechenbereich</legend>
+                    <ul class="grid">
+                        <li><label for="exercisesNumberRangeStart">Von:</label>
+                            <input id="exercisesNumberRangeStart" type="number" class="half-width"  th:field="*{exercisesNumberRangeStart}"
+                                   min="1" max="9999" step="1" value="1" required>
+                            <div id="ValErrExNumRngStrtInp" class ="validationError">
+                                <img class ="resize-smaller-not-bigger"  th:src="@{/images/mathe-prinz-symbol-error.svg}"
+                                     src="../static/images/mathe-prinz-symbol-error.svg" />
+                                <p class="validationMessage" >Der Beginn muss zwischen 1 und 9999 liegen</p>
+                            </div>
+                        </li>
+                        <li><label for="exercisesNumberRangeEnd">Bis:</label>
+                            <input type="number" class="half-width" id="exercisesNumberRangeEnd" th:field="*{exercisesNumberRangeEnd}"
+                                   min="1" max="9999" step="1" value="100" required>
+                            <div id="ValErrExNumRngEndInp" class ="validationError">
+                                <img class ="resize-smaller-not-bigger" th:src="@{/images/mathe-prinz-symbol-error.svg}"
+                                     src="../static/images/mathe-prinz-symbol-error.svg"  />
+                                <p class="validationMessage" >Das Ende muss zwischen 1 und 9999 liegen</p>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+                <section id="checkboxSection">
+                    <legend>Aufgabenart</legend>
+                    <ul id="operatorUl" class="grid">
+                        <li><div class="flex-center">
+                            <input type="checkbox" id="add" name="withOperationsAdd" th:checked="*{withOperationsAdd}" checked>
+                            <img id="symbol-addition" class="math-symbol" th:src="@{/images/symbol-addition.svg}"
+                                 src="../static/images/symbol-addition.svg" />
+                        </div></li>
+                        <li><div class="flex-center">
+                            <input type="checkbox" id="sub" name="withOperationsSub" th:checked="*{withOperationsSub}">
+                            <img id="symbol-subtraction" class="math-symbol" th:src="@{/images/symbol-subtraction.svg}"
+                                 src="../static/images/symbol-subtraction.svg" />
+                        </div></li>
+                        <li><div class="flex-center">
+                            <input type="checkbox" id="multi" name="withOperationsMul" th:checked="*{withOperationsMul}">
+                            <img id="symbol-multiplication" class="math-symbol" th:src="@{/images/symbol-multiplication.svg}"
+                                 src="../static/images/symbol-multiplication.svg" />
+                        </div></li>
+                        <li><div class="flex-center">
+                            <input type="checkbox" id="div" name="withOperationsDiv" th:checked="*{withOperationsDiv}">
+                            <img id="symbol-division" class="math-symbol" th:src="@{/images/symbol-division.svg}"
+                                 src="../static/images/symbol-division.svg" />
+                        </div></li>
+                    </ul>
+                    <div id="ValidationErrorOperators" class ="validationError" >
+                        <img class ="resize-smaller-not-bigger" src="../static/images/mathe-prinz-symbol-error.svg"
+                                                                th:src="@{/images/mathe-prinz-symbol-error.svg}"/>
+                        <p class="validationMessage" >Bitte mindestens einen Operator anhaken.</p>
+                    </div>
+                </section>
+                <section id="formButtonsSection">
+                    <button type="submit" id="submitButton" value="Erstellen" >Erstellen</button>
+                    <button type="reset" value="Zurücksetzen">Zurücksetzen</button>
+                </section>
             </form>
-
         </div>
         <div class ="col-wide-4 col-mid-4 col-mobile-0">
-            <img class="resize-smaller-not-bigger" src="" th:src="@{/images/mathe-prinz-zauberstab.svg}" />
+            <img class="resize-smaller-not-bigger" th:src="@{/images/mathe-prinz-zauberstab.svg}"
+                                                      src="../static//images/mathe-prinz-zauberstab.svg" />
         </div>
         <div class ="col-wide-2 col-mid-2 col-mobile-0"></div>
     </div>
@@ -65,9 +109,17 @@
     <div class="row">
         <div class ="col-wide-3 col-mid-1 col-mobile-0"></div>
         <div class ="col-wide-6 col-mid-10 col-mobile-12">
-            <div class="horizontal-center">
-                <p>Matheprinz auf server-121.de</p>
-            </div>
+            <div class ="flex-center flex-space-evenly">
+
+                    <a class="flex-center black-text" href ="https://github.com/MrMame/math-generator">
+                        <img id="github-logo" th:src="@{/images/logo-github.svg}"
+                             src="../static/images/logo-github.svg" />
+                        <p>Github-Projekt</p>
+                    </a>
+
+                </div>
+
+
         </div>
         <div class ="col-wide-3 col-mid-1 col-mobile-0"></div>
     </div>

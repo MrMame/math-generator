@@ -105,18 +105,26 @@ Images resizable
 .flex-center{
     display: flex;
     align-items: center;
-    justify-content: center;
+    #justify-content: space-evenly;
+}
+.flex-space-evenly{
+    justify-content: space-evenly;
 }
 
 
 .full-width{
     width:100%;
 }
+.half-width{
+    width:100%;
+
+}
 
 .text-center{
     display:flex;
     align-items:center;
 }
+
 
 
 
@@ -131,7 +139,9 @@ COLORS
     background-color: antiquewhite;
 }
 
-
+a.black-text{
+    color:#000000;
+}
 
 /* ------------------------------------------
 ELEMENTS
@@ -145,3 +155,96 @@ ELEMENTS
     margin:5px;
     width:50%;
 }
+
+.validationMessage{
+    color: red;
+    font-weight: bold;
+    padding:5px;
+    font-size: 0.7em;
+}
+
+.validationError{
+    display:flex;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.grid{
+    display:flex;
+}
+.grid li {
+    width: 50%;
+    list-style-type:none;
+}
+
+#operatorUl.grid li {
+  display:block;
+}
+
+.hidden{
+    display:none;
+}
+
+
+/* ------------------------------------------
+FOOTER
+------------------------------------------*/
+#github-logo{
+    width:30px;
+    padding:5px;
+
+}
+#github-project-link{
+    display: flex;
+    align-items: center;
+}
+
+/* ------------------------------------------
+FORM
+------------------------------------------*/
+
+section{
+    padding-bottom:10px;
+}
+
+#operationCheckboxes > li{
+    padding-left:20px;
+    padding-right:20px;
+}
+
+legend{
+    font-weight:bold;
+    padding-top:20px;
+    padding-bottom:10px;
+}
+
+label{
+    font-size: 0.85em;
+}
+
+button{
+    width: max(33%,120px);
+    height:30px;
+    margin-left:auto;
+    margin-right:auto;
+    font-color:black;
+}
+
+#formButtonsSection{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:40px;
+}
+
+.math-symbol{
+    width:29px;
+    margin-left:5px;
+}
+
+input:invalid {
+  border: 2px dashed red;
+  background-color:red;
+}
+
+

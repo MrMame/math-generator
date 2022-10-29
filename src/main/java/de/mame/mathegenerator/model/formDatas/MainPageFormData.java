@@ -1,15 +1,29 @@
 package de.mame.mathegenerator.model.formDatas;
 
-public class MainPageFormData {
-    Integer numberOfExercises=100;
-    Integer exercisesNumberRangeStart=1;
-    Integer exercisesNumberRangeEnd=100;
+import org.hibernate.validator.constraints.ScriptAssert;
 
-    Integer exercisesPacketSize;
-    Boolean withOperationsAdd=false;
-    Boolean withOperationsSub=false;
-    Boolean withOperationsMul=false;
-    Boolean withOperationsDiv=false;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
+
+
+public class MainPageFormData {
+
+
+    @Min(value=1,message="die Anzahl der Aufgaben muss mindestens {value} betragen")
+    @Max(value=10000,message="Die Anzahl der Aufgaben darf höchstens {value} betragen")
+    private Integer numberOfExercises=100;
+    @Min(value=1,message="Das erlaubte Minimum des Zahlenbereich-Anfangs liegt bei {value}")
+    @Max(value=1000000000,message="Das erlaubte Maximum des Zahlenbereich-Anfangs liegt bei {value}")
+    private Integer exercisesNumberRangeStart=1;
+    @Min(value=1,message="Das erlaubte Minimum des Zahlenbereich-Endes liegt bei {value}")
+    @Max(value=1000000000,message="Das erlaubte Maximum des Zahlenbereich-Endes liegt bei {value}")
+    private Integer exercisesNumberRangeEnd=100;
+
+    private Boolean withOperationsAdd=true;
+    private Boolean withOperationsSub=false;
+    private Boolean withOperationsMul=false;
+    private Boolean withOperationsDiv=false;
 
     public Boolean getWithOperationsAdd() {
         return withOperationsAdd;
@@ -47,7 +61,6 @@ public class MainPageFormData {
     public Integer getExercisesNumberRangeStart() {
         return exercisesNumberRangeStart;
     }
-
     public void setExercisesNumberRangeStart(Integer exercisesNumberRangeStart) {
         this.exercisesNumberRangeStart = exercisesNumberRangeStart;
     }
@@ -60,16 +73,7 @@ public class MainPageFormData {
         this.exercisesNumberRangeEnd = exercisesNumberRangeEnd;
     }
 
-    public Integer getExercisesPacketSize() {
-        return exercisesPacketSize;
-    }
 
-    public void setExercisesPacketSize(Integer exercisesPacketSize) {
-        this.exercisesPacketSize = exercisesPacketSize;
-    }
-
-    public MainPageFormData() {
-    }
 
     public Integer getNumberOfExercises() {
         return numberOfExercises;
@@ -77,6 +81,19 @@ public class MainPageFormData {
     public void setNumberOfExercises(Integer numberOfExercises) {
         this.numberOfExercises = numberOfExercises;
     }
+
+    public MainPageFormData() {
+    }
+
+
+    private void EnsureRightNumberRangeOrder() {
+        if(this.exercisesNumberRangeStart>this.exercisesNumberRangeEnd){
+            int tmp = this.exercisesNumberRangeEnd;
+            this.exercisesNumberRangeEnd = this.exercisesNumberRangeStart;
+            this.exercisesNumberRangeStart = tmp;
+        }
+    }
+
 
 
 }

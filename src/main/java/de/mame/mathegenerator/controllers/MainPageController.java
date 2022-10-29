@@ -6,11 +6,13 @@ import de.mame.mathegenerator.model.formulas.Formula;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -34,7 +36,13 @@ public class MainPageController {
     }
 
     @PostMapping("/")
-    public String showMainPage(@ModelAttribute MainPageFormData theFormData, Model model){
+    public String showMainPage(@Valid @ModelAttribute("theFormData") MainPageFormData theFormData,
+                               BindingResult theBindingResult,Model model){
+        /* Returns to Main Form if Inputvalidation has found some issues */
+        if(theBindingResult.hasErrors()){
+            return "main-page";
+        }
+
         model.addAttribute("theFormData",theFormData);
         System.out.println("Received number of exercises :" + theFormData.getNumberOfExercises());
 
