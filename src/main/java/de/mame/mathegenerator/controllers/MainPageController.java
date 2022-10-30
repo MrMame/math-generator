@@ -38,30 +38,46 @@ public class MainPageController {
     @PostMapping("/")
     public String showMainPage(@Valid @ModelAttribute("theFormData") MainPageFormData theFormData,
                                BindingResult theBindingResult,Model model){
+
         /* Returns to Main Form if Inputvalidation has found some issues */
-        if(theBindingResult.hasErrors()){
+        if(theBindingResult.hasErrors()){return "main-page";}
+
+        model.addAttribute("theFormData",theFormData);
+
+        /* Request Formulas from Service. In cas of an Error, the returned formulas list is empty */
+        ArrayList<Formula> formulas = requestFormulasFromService(theFormData);
+
+        model.addAttribute("theFormulas", formulas);
+
+        /* In case of an error, we return to the main page */
+        if(formulas.size() > 0){
+            return "result-page";
+        }else{
             return "main-page";
         }
 
-        model.addAttribute("theFormData",theFormData);
-        System.out.println("Received number of exercises :" + theFormData.getNumberOfExercises());
+    }
 
-        /* Formulas return list for the response*/
+    private ArrayList<Formula> requestFormulasFromService(MainPageFormData theFormData) {
+
         ArrayList<Formula> formulas = new ArrayList<>();
 
-        formulas = this._mathGeneratorsService.CreateMixedFormulas(theFormData.getExercisesNumberRangeStart(),
-                                                                    theFormData.getExercisesNumberRangeEnd(),
-                                                                    theFormData.getNumberOfExercises(),
-                                                                    theFormData.getWithOperationsAdd(),
-                                                                    theFormData.getWithOperationsSub(),
-                                                                    theFormData.getWithOperationsMul(),
-                                                                    theFormData.getWithOperationsDiv());
+        try {
+            formulas = this._mathGeneratorsService.CreateMixedFormulas(theFormData.getExercisesNumberRangeStart(),
+                    theFormData.getExercisesNumberRangeEnd(),
+                    theFormData.getNumberOfExercises(),
+                    theFormData.getWithOperationsAdd(),
+                    theFormData.getWithOperationsSub(),
+                    theFormData.getWithOperationsMul(),
+                    theFormData.getWithOperationsDiv());
 
-        /* Return the Formulas to the model*/
-        model.addAttribute("theFormulas", formulas);
+        }catch(Exception e){
+            System.out.println("Error while creating formulas. "
+                    + e.toString());
+            formulas.clear();       // In case of an error, all formulas are invalid and will be deleted
+        }
 
-        /* Show results page */
-        return "result-page";
+        return formulas;
     }
 
 
