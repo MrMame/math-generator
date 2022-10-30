@@ -3,7 +3,7 @@
 
 /* EXPORTS ----------------------------------------------------- */
 
-export function validateForm(){
+export function validateForm(e){
 
 
     // Remove all floating point numbers
@@ -11,13 +11,18 @@ export function validateForm(){
     removeFloatingPointFromValue('#exercisesNumberRangeStart');
     removeFloatingPointFromValue('#exercisesNumberRangeEnd');
 
-
     // check validities
     const isExNumInvalid = getExerciseNumberInvalid();
     const isCalRngStartInvalid = getCalulcationRangeStartInvalid();
     const isCalRngEndInvalid = getCalulcationRangeEndInvalid();
+    const areRangeInputsValid = !(isCalRngStartInvalid || isCalRngEndInvalid)
     const isNoOperatorSelected = getNoOperatorSelected();
     const isSubmitDisabled = (isExNumInvalid || isCalRngStartInvalid || isCalRngEndInvalid || isNoOperatorSelected);
+
+    // fix wrong caluclation range (min > max) if inputs are already in inputs valid number range
+    if(areRangeInputsValid){
+        fixCalculationRange(e);
+    }
 
     // Show invalid messages
     (isExNumInvalid)? showExerciseNumberInvalidBox() : hideExerciseNumberInvalidBox();
@@ -38,6 +43,65 @@ function removeFloatingPointFromValue(sel){
     let values =  el.value.split(".");
     el.value = values[0];
 }
+
+function fixCalculationRange(e){
+    let rangeStartInput = document.querySelector('#exercisesNumberRangeStart');
+    let rangeEndInput = document.querySelector('#exercisesNumberRangeEnd');
+
+    /* Error1: End is smaller than start */
+    let isEndLowerEqualStart = parseInt(rangeEndInput.value) <= parseInt(rangeStartInput.value);
+    if(isEndLowerEqualStart){
+
+        let eventTargetId = event.target.getAttribute("id");
+
+        // If User is currently changing Endnumber, than we have to change the Start number for him.
+        if( eventTargetId === 'exercisesNumberRangeEnd'){
+            fixStartRange();
+        }
+        // If User is currently changing startnumber, than we have to change the endnumber for him.
+        if(eventTargetId === 'exercisesNumberRangeStart'){
+            fixEndRange();
+        }
+        // By default, we are changing the end number
+        let isEventNotSendFromRangeInputs = !(eventTargetId === 'exercisesNumberRangeEnd' || eventTargetId === 'exercisesNumberRangeStart');
+        if(isEventNotSendFromRangeInputs){
+            fixEndRange();
+        }
+
+    }
+}
+
+function fixStartRange(){
+    let rangeStartInput = document.querySelector('#exercisesNumberRangeStart');
+    let rangeEndInput = document.querySelector('#exercisesNumberRangeEnd');
+
+    let endRangeMinValue = parseInt(rangeEndInput.getAttribute("min"));
+    let isEndRangeMinValue =(parseInt(rangeEndInput.value) === parseInt(endRangeMinValue));
+
+    if(isEndRangeMinValue){
+        rangeStartInput.value = endRangeMinValue
+        rangeEndInput.value = endRangeMinValue + 1;
+    }else{
+        rangeStartInput.value = parseInt(rangeEndInput.value) - 1;
+    }
+}
+
+
+function fixEndRange(){
+    let rangeStartInput = document.querySelector('#exercisesNumberRangeStart');
+    let rangeEndInput = document.querySelector('#exercisesNumberRangeEnd');
+
+    let startRangeMaxValue = parseInt(rangeStartInput.getAttribute("max"));
+    let isStartValAtMax = (parseInt(rangeStartInput.value) === parseInt(startRangeMaxValue));
+
+    if(isStartValAtMax){
+        rangeStartInput.value = startRangeMaxValue - 1;
+        rangeEndInput.value = startRangeMaxValue;
+    }else{
+        rangeEndInput.value = parseInt(rangeStartInput.value) + 1;
+    }
+}
+
 
 function showExerciseNumberInvalidBox(){
      showElement('ValidationErrorAnzahlInput');
