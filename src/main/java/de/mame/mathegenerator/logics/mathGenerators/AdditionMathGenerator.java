@@ -77,7 +77,7 @@ public class AdditionMathGenerator
     }
 
     private List<Formula> createListOfFormulas() {
-        List<Formula> theFormulas = new ArrayList<Formula>();
+        List<Formula> theFormulas = new ArrayList<>();
 
         Integer numA;
         Integer numB;
@@ -100,8 +100,7 @@ public class AdditionMathGenerator
             /* Randomly change numA and NumB position in formula. That will end
              in a more mixed formula look.*/
             Formula theFormula = new Formula();
-            //if(this._theRand.nextInt(1,3) == 1){
-            if(true){
+            if(this._theRand.nextInt(1,3) == 1){
                 theFormula.AddFormulaMember(new RealNumber(numA));
                 theFormula.AddFormulaMember(theAddMathOperator);
                 theFormula.AddFormulaMember(new RealNumber(numB));
