@@ -1,5 +1,6 @@
 package de.mame.mathegenerator.logics.numberPools;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +12,7 @@ import java.util.Random;
 public class RandomNumberPool
     implements NumberPool {
 
-    Random _theRand = new Random();
+    Random _theRand;
     ArrayList<Integer> _randomNumberPool = new ArrayList<Integer>();
     int _startNumber;
     int _endNumber;
@@ -31,6 +32,17 @@ public class RandomNumberPool
     public void setEndNumber(int endNumber) {
         this._endNumber = endNumber;
     }
+
+
+    @Autowired
+    public RandomNumberPool() {
+        this._theRand = new Random();
+    }
+    @Autowired(required = false)
+    public RandomNumberPool(int seed) {
+        this._theRand = new Random(seed);
+    }
+
 
     @Override
     public void initPool(int startNumber, int endNumber) {
@@ -66,7 +78,6 @@ public class RandomNumberPool
          * next time only after all other numbers were taken from the list. */
         int numberIdx = _theRand.nextInt(this._randomNumberPool.size());
         Integer returnNumber = this._randomNumberPool.get(numberIdx);
-        System.out.println("Index " + numberIdx + " zahl " + returnNumber);
         this._randomNumberPool.remove(numberIdx);
         return returnNumber;
     }

@@ -51,7 +51,7 @@ public class MultiplicationMathGenerator
     }
 
     @Autowired
-    public MultiplicationMathGenerator(@Qualifier("randomNumberPool") NumberPool numberPool) {
+    public MultiplicationMathGenerator(NumberPool numberPool) {
         this._numberPool = numberPool;
     }
 
@@ -75,7 +75,7 @@ public class MultiplicationMathGenerator
     private List<Formula> createListOfFormulas() {
         List<Formula> theFormulas = new ArrayList<Formula>();
 
-        Random theRand = new Random();
+        Random theRand = new Random(1);
 
         Integer numA;
         Integer numB;

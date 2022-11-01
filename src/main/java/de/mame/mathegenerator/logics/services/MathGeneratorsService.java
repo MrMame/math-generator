@@ -161,7 +161,7 @@ public class MathGeneratorsService {
         /* Return Empty List if no MathgeneratorList is available*/
         if(allFormulaLists.isEmpty())return returnFormulas;
 
-        Random theRand = new Random();
+        Random theRand = new Random(1);
         int idxRandomFormulaNumber;int idxRandomMathgeneratorNumber;
         int i;
         Formula randomFormula;

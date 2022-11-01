@@ -35,7 +35,7 @@ public class Formula {
 
         // Find a random number to blank out
         Integer noOfBlankedNumber;
-        Random theRando = new Random();
+        Random theRando = new Random(1);
         noOfBlankedNumber = (theRando.nextInt(numberOfNumbers) + 1);
 
         Integer cntNumber=0;

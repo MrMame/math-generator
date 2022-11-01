@@ -7,10 +7,12 @@ import de.mame.mathegenerator.model.formulas.formulaMembers.mathOperators.Equals
 import de.mame.mathegenerator.model.formulas.formulaMembers.numbers.RealNumber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @Component
@@ -21,7 +23,7 @@ public class AdditionMathGenerator
     private Integer _numberRangeStart;
     private Integer _numberRangeEnd;
 
-    private final Random _theRand = new Random();
+    private Random _theRand;
 
     private NumberPool _theRandomNumberPool;
 
@@ -53,11 +55,18 @@ public class AdditionMathGenerator
 
 
 
-    @Autowired
-    public AdditionMathGenerator(@Qualifier("randomNumberPool")
-                                 NumberPool theNumberPool) {
+    @Autowired(required = false)
+    public AdditionMathGenerator(NumberPool theNumberPool) {
         this._theRandomNumberPool = theNumberPool;
+        this._theRand = new Random();
     }
+    @Autowired(required = false)
+    public AdditionMathGenerator(NumberPool theNumberPool, int seed) {
+        this._theRandomNumberPool = theNumberPool;
+        this._theRand = new Random(seed);
+    }
+
+
 
     @Override
     public List<Formula> createExercises() {

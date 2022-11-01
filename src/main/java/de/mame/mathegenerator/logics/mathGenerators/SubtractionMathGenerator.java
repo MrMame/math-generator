@@ -53,7 +53,7 @@ public class SubtractionMathGenerator
     }
 
     @Autowired
-    public SubtractionMathGenerator(@Qualifier("randomNumberPool") NumberPool numberPool) {
+    public SubtractionMathGenerator(NumberPool numberPool) {
         this._numberPool = numberPool;
     }
 
@@ -77,7 +77,7 @@ public class SubtractionMathGenerator
     private List<Formula> createListOfFormulas() {
         List<Formula> theFormulas = new ArrayList<Formula>();
 
-        Random theRand = new Random();
+        Random theRand = new Random(1);
 
         Integer numA;
         Integer numB;

@@ -53,7 +53,7 @@ public class DivisionMathGenerator
     }
 
     @Autowired
-    public DivisionMathGenerator(@Qualifier("randomNumberPool") NumberPool numberPool) {
+    public DivisionMathGenerator(NumberPool numberPool) {
         this._numberPool = numberPool;
     }
 
@@ -79,7 +79,7 @@ public class DivisionMathGenerator
     private List<Formula> createListOfFormulas() {
         List<Formula> theFormulas = new ArrayList<Formula>();
 
-        Random theRand = new Random();
+        Random theRand = new Random(1);
 
         Integer numA;
         Integer numB;
