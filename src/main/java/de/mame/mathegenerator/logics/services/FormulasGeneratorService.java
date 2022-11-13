@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 @Service
-public class MathGeneratorsService {
+public class FormulasGeneratorService {
 
     private final AdditionMathGenerator _theAdditionMathGenerator;
     private final DivisionMathGenerator _theDivisionMathGenerator;
@@ -21,11 +21,11 @@ public class MathGeneratorsService {
 
 
     @Autowired
-    public MathGeneratorsService(AdditionMathGenerator theAdditionMathGenerator,
-                                 DivisionMathGenerator theDivisionMathGenerator,
-                                 GroupMathGenerator theGroupOfMathGenerators,
-                                 MultiplicationMathGenerator theMultiplicationMathGenerator,
-                                 SubtractionMathGenerator theSubtractionMathGenerator) {
+    public FormulasGeneratorService(AdditionMathGenerator theAdditionMathGenerator,
+                                    DivisionMathGenerator theDivisionMathGenerator,
+                                    GroupMathGenerator theGroupOfMathGenerators,
+                                    MultiplicationMathGenerator theMultiplicationMathGenerator,
+                                    SubtractionMathGenerator theSubtractionMathGenerator) {
         this._theAdditionMathGenerator= theAdditionMathGenerator;
         this._theDivisionMathGenerator = theDivisionMathGenerator;
         this._theGroupOfMathGenerators = theGroupOfMathGenerators;

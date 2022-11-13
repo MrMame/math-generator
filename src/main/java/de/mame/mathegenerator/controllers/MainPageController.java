@@ -1,6 +1,6 @@
 package de.mame.mathegenerator.controllers;
 
-import de.mame.mathegenerator.logics.services.MathGeneratorsService;
+import de.mame.mathegenerator.logics.services.FormulasGeneratorService;
 import de.mame.mathegenerator.model.formDatas.MainPageFormData;
 import de.mame.mathegenerator.model.formulas.Formula;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +20,12 @@ import java.util.Date;
 @RequestMapping("/")
 public class MainPageController {
 
-    private MathGeneratorsService _mathGeneratorsService;
+    private FormulasGeneratorService _formulasGeneratorService;
 
 
     @Autowired
-    public MainPageController(MathGeneratorsService mathGeneratorsService) {
-        this._mathGeneratorsService = mathGeneratorsService;
+    public MainPageController(FormulasGeneratorService formulasGeneratorService) {
+        this._formulasGeneratorService = formulasGeneratorService;
     }
 
     @GetMapping("/")
@@ -63,7 +63,7 @@ public class MainPageController {
         ArrayList<Formula> formulas = new ArrayList<>();
 
         try {
-            formulas = this._mathGeneratorsService.CreateMixedFormulas(theFormData.getExercisesNumberRangeStart(),
+            formulas = this._formulasGeneratorService.CreateMixedFormulas(theFormData.getExercisesNumberRangeStart(),
                     theFormData.getExercisesNumberRangeEnd(),
                     theFormData.getNumberOfExercises(),
                     theFormData.getWithOperationsAdd(),
