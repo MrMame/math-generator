@@ -2,7 +2,9 @@ package de.mame.mathegenerator.logics.mathGenerators;
 
 import de.mame.mathegenerator.logics.numberPools.RandomNumberPool;
 import de.mame.mathegenerator.model.formulas.Formula;
+import org.junit.Assert;
 import org.junit.Before;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,18 +24,15 @@ import static org.mockito.Mockito.when;
 public class AdditionMathGeneratorUnitTest {
 
 
-    private ApplicationContext _ctx;
+    private ApplicationContext _ctx = new AnnotationConfigApplicationContext(AdditionMathGeneratorTestConfiguration.class);
 
     @BeforeEach
     public void setup(){
-       this. _ctx = new AnnotationConfigApplicationContext(AdditionMathGeneratorTestConfiguration.class);
     }
 
 
     @Test
-    public void getExercise_Reproducable_EachNewinstance() {
-
-
+    public void getExercise_generatesSameFormulars_ifSeedIsGivenToConstructors() {
 
         ArrayList<List<Formula>> testResults = new ArrayList<>();
 
@@ -50,6 +49,24 @@ public class AdditionMathGeneratorUnitTest {
         }
 
         // Assert
+        // Formula 1 of each run
+        Assert.assertEquals(testResults.get(0).get(1).toString(), testResults.get(1).get(1).toString());
+        Assert.assertEquals(testResults.get(0).get(1).toString(), testResults.get(2).get(1).toString());
+        Assert.assertEquals(testResults.get(0).get(1).toString(), testResults.get(3).get(1).toString());
+        Assert.assertEquals(testResults.get(1).get(1).toString(), testResults.get(0).get(1).toString());
+        Assert.assertEquals(testResults.get(1).get(1).toString(), testResults.get(2).get(1).toString());
+        Assert.assertEquals(testResults.get(1).get(1).toString(), testResults.get(3).get(1).toString());
+        Assert.assertEquals(testResults.get(2).get(1).toString(), testResults.get(3).get(1).toString());
+        // Formula 2 of each run
+        Assert.assertEquals(testResults.get(0).get(2).toString(), testResults.get(1).get(2).toString());
+        Assert.assertEquals(testResults.get(0).get(2).toString(), testResults.get(2).get(2).toString());
+        Assert.assertEquals(testResults.get(0).get(2).toString(), testResults.get(3).get(2).toString());
+        Assert.assertEquals(testResults.get(1).get(2).toString(), testResults.get(0).get(2).toString());
+        Assert.assertEquals(testResults.get(1).get(2).toString(), testResults.get(2).get(2).toString());
+        Assert.assertEquals(testResults.get(1).get(2).toString(), testResults.get(3).get(2).toString());
+        Assert.assertEquals(testResults.get(2).get(2).toString(), testResults.get(3).get(2).toString());
+
+        /*
         System.out.println("-------------------------\r");
         System.out.println(testResults.get(0).get(1) + " " +
                 testResults.get(1).get(1) + " " +
@@ -60,7 +77,7 @@ public class AdditionMathGeneratorUnitTest {
                 testResults.get(1).get(2) + " " +
                 testResults.get(2).get(2) + " " +
                 testResults.get(3).get(2));
-
+        */
 
     }
 
