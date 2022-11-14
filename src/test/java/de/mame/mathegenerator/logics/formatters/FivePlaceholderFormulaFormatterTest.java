@@ -17,7 +17,7 @@ class FivePlaceholderFormulaFormatterTest {
     }
 
     @Test
-    void ArrayOfValidFormulas_are_wellFormatted() {
+    void LessThen5FormulaValues_are_wellFormatted() {
         //Arrange
         Formula testFormula = new Formula();
         testFormula.AddFormulaMember(new RealNumber(12));
@@ -35,6 +35,44 @@ class FivePlaceholderFormulaFormatterTest {
         String assertString = "   12    +   88    =  100";
         Assert.assertEquals(assertString,
                             formatted);
+
+    }
+
+    @Test
+    void MoreThen5FormulaValues_are_outOfFormat() {
+        //Arrange
+        Formula testFormula = new Formula();
+        testFormula.AddFormulaMember(new RealNumber(123456));
+        testFormula.AddFormulaMember(new AddMathOperator());
+        testFormula.AddFormulaMember(new RealNumber(123456));
+        testFormula.AddFormulaMember(new EqualsMathOperator());
+        testFormula.AddFormulaMember(new RealNumber(246912));
+
+        FivePlaceholderFormulaFormatter theFormatter = new FivePlaceholderFormulaFormatter(testFormula);
+
+        //Act
+        String formatted = theFormatter.getFormattedString();
+
+        //ASSERT
+        String assertString = "123456    +123456    =246912";
+        Assert.assertEquals(assertString,
+                formatted);
+
+    }
+
+    @Test
+    void EmptyFormulasWoMembers_return_emptyString() {
+        //Arrange
+        Formula testFormula = new Formula();
+        FivePlaceholderFormulaFormatter theFormatter = new FivePlaceholderFormulaFormatter(testFormula);
+
+        //Act
+        String formatted = theFormatter.getFormattedString();
+
+        //ASSERT
+        String assertString = "";
+        Assert.assertEquals(assertString,
+                formatted);
 
     }
 }
