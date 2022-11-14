@@ -23,9 +23,9 @@ public class FivePlaceholderFormulaFormatter implements FormulaFormatter{
         // Format Each Member of the Formula and add it to the return string
         for(FormulaMember member:this._theFormula.GetFormulaMembers()){
             // Each Type of Formulamember has its own format string
-            if(member.getClass() == Number.class){
+            if(member instanceof Number){
                 formattedMember = String.format(this.FORMAT_STRING_NUMBER, ((RealNumber) member).GetIntegerValue());
-            }else if(member.getClass() == MathOperator.class){
+            }else if(member instanceof MathOperator){
                 formattedMember = String.format(this.FORMAT_STRING_OPERATOR, ((MathOperator) member).GetCharacter());
             }
             // add to return string
