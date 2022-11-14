@@ -11,7 +11,7 @@ public class SystemRandomizer implements Randomizer{
     }
 
     @Override
-    public int getInt(int origin, int bound) {
+    public int nextInt(int origin, int bound) {
         return this._theRand.nextInt(origin,bound);
     }
 
