@@ -1,6 +1,8 @@
 package de.mame.mathegenerator.model.formulas.formulaMembers.mathOperators;
 
-public class DivMathOperator implements MathOperator{
+import de.mame.mathegenerator.model.formulas.formulaMembers.FormulaMember;
+
+public class DivMathOperator implements FormulaMember, MathOperator{
     @Override
     public String GetCharacter() {
         return ":";

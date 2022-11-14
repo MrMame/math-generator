@@ -1,6 +1,8 @@
 package de.mame.mathegenerator.model.formulas.formulaMembers.mathOperators;
 
-public class MulMathOperator implements MathOperator{
+import de.mame.mathegenerator.model.formulas.formulaMembers.FormulaMember;
+
+public class MulMathOperator implements FormulaMember, MathOperator{
     @Override
     public String GetCharacter() {
         return "x";

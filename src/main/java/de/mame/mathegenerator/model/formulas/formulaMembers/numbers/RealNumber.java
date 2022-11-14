@@ -1,6 +1,8 @@
 package de.mame.mathegenerator.model.formulas.formulaMembers.numbers;
 
-public class RealNumber implements Number {
+import de.mame.mathegenerator.model.formulas.formulaMembers.FormulaMember;
+
+public class RealNumber implements FormulaMember, Number {
 
 
     private static final String FORMAT_STRING = "%3s";  // Decimal numbers will be 3 characters
