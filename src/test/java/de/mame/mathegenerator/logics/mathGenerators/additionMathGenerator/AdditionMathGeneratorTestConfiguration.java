@@ -1,6 +1,9 @@
-package de.mame.mathegenerator.logics.mathGenerators;
+package de.mame.mathegenerator.logics.mathGenerators.additionMathGenerator;
 
+import de.mame.mathegenerator.logics.mathGenerators.AdditionMathGenerator;
 import de.mame.mathegenerator.logics.numberPools.RandomNumberPool;
+import de.mame.mathegenerator.logics.randomizers.Randomizer;
+import de.mame.mathegenerator.logics.randomizers.SystemRandomizer;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
@@ -16,8 +19,16 @@ public class AdditionMathGeneratorTestConfiguration {
 
     @Bean
     @Scope("prototype")
+    public Randomizer getSystemRandomizer() {
+        return new SystemRandomizer();
+    }
+
+
+
+    @Bean
+    @Scope("prototype")
     AdditionMathGenerator getAdditionMathGenerator(){
-        return new AdditionMathGenerator(this.getRandomNumberPool(),1);
+        return new AdditionMathGenerator(this.getRandomNumberPool(),this.getSystemRandomizer());
     }
 
 }
