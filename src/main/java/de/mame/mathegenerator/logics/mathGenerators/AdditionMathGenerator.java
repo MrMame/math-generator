@@ -1,6 +1,7 @@
 package de.mame.mathegenerator.logics.mathGenerators;
 
 import de.mame.mathegenerator.logics.numberPools.NumberPool;
+import de.mame.mathegenerator.logics.randomizers.Randomizer;
 import de.mame.mathegenerator.model.formulas.Formula;
 import de.mame.mathegenerator.model.formulas.formulaMembers.mathOperators.AddMathOperator;
 import de.mame.mathegenerator.model.formulas.formulaMembers.mathOperators.EqualsMathOperator;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 @Component
 public class AdditionMathGenerator
@@ -23,7 +23,7 @@ public class AdditionMathGenerator
     private Integer _numberRangeStart;
     private Integer _numberRangeEnd;
 
-    private Random _theRand;
+    private Randomizer _theRand;
 
     private NumberPool _theRandomNumberPool;
 
@@ -56,14 +56,9 @@ public class AdditionMathGenerator
 
 
     @Autowired(required = false)
-    public AdditionMathGenerator(NumberPool theNumberPool) {
+    public AdditionMathGenerator(NumberPool theNumberPool, Randomizer theRandomizer) {
         this._theRandomNumberPool = theNumberPool;
-        this._theRand = new Random();
-    }
-    @Autowired(required = false)
-    public AdditionMathGenerator(NumberPool theNumberPool, int seed) {
-        this._theRandomNumberPool = theNumberPool;
-        this._theRand = new Random(seed);
+        this._theRand = theRandomizer;
     }
 
 
