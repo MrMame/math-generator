@@ -13,14 +13,20 @@ public class RealNumber implements Number {
     }
     public RealNumber(Integer value) {
         this._doubleValue = value.doubleValue();
-        this._isInteger = true;
+        this._isInteger = true;     // Obsoltee. Formatting is done outside this class
     }
 
 
     @Override
-    public Double GetValue() {
+    public Double GetDoubleValue() {
         return this._doubleValue;
     }
+
+    @Override
+    public Integer GetIntegerValue() {
+        return this._doubleValue.intValue();
+    }
+
     @Override
     public void SetValue(Double value) {
         this._doubleValue = value;
