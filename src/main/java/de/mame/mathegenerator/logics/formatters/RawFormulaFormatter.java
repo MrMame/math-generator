@@ -5,11 +5,11 @@ import de.mame.mathegenerator.model.formulas.formulaMembers.FormulaMember;
 
 import java.util.ArrayList;
 
-public class NoFormulaFormatter implements FormulaFormatter{
+public class RawFormulaFormatter implements FormulaFormatter{
 
     private Formula _theFormula;
     
-    public NoFormulaFormatter(Formula theFormula){
+    public RawFormulaFormatter(Formula theFormula){
         this._theFormula = theFormula;
     }
 
