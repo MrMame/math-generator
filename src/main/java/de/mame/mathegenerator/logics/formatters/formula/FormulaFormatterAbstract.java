@@ -1,6 +1,7 @@
 package de.mame.mathegenerator.logics.formatters.formula;
 
 import de.mame.mathegenerator.logics.formatters.formulaMembers.MembersFormatter;
+import de.mame.mathegenerator.model.formulas.Formula;
 
 public abstract class FormulaFormatterAbstract {
 
@@ -13,6 +14,6 @@ public abstract class FormulaFormatterAbstract {
 
     }
 
-    public abstract String getFormattedString();
+    public abstract String getFormattedString(Formula formula);
 
 }
