@@ -103,6 +103,8 @@ public class SubtractionMathGenerator
             }
 
             // Because We don't want negative results we have to ensure that the biggest number is written first.
+            //FIXME Formula Constructor needs to get a Valid FormulaFormatter Object:
+            // - See AdditionMathGenerator on how to implement this
             Formula theFormula = new Formula();
             if(numA > numB){
                 theFormula.AddFormulaMember(new RealNumber(numA));

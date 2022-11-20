@@ -10,7 +10,7 @@ public class FormulaFormatter extends FormulaFormatterAbstract {
 
 
 
-    public FormulaFormatter(Formula Formula, MembersFormatter NumberFormatter, MembersFormatter OperatorFormatter) {
+    public FormulaFormatter(MembersFormatter NumberFormatter, MembersFormatter OperatorFormatter) {
         super(NumberFormatter, OperatorFormatter);
     }
 

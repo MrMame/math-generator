@@ -102,6 +102,8 @@ public class MultiplicationMathGenerator
 
             result = numA * numB;
 
+            //FIXME Formula Constructor needs to get a Valid FormulaFormatter Object:
+            // - See AdditionMathGenerator on how to implement this
             Formula theFormula = new Formula();
             theFormula.AddFormulaMember(new RealNumber(numA));
             theFormula.AddFormulaMember(mulMathOperator);

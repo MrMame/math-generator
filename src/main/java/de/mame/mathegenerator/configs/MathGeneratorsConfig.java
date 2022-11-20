@@ -1,5 +1,6 @@
 package de.mame.mathegenerator.configs;
 
+import de.mame.mathegenerator.logics.formatters.formula.FormulaFormatter;
 import de.mame.mathegenerator.logics.mathGenerators.AdditionMathGenerator;
 import de.mame.mathegenerator.logics.numberPools.RandomNumberPool;
 import de.mame.mathegenerator.logics.randomizers.Randomizer;
@@ -17,8 +18,10 @@ public class MathGeneratorsConfig {
     @Bean
     @Primary
     @Autowired
-    AdditionMathGenerator getAdditionMathGenerator(RandomNumberPool theRandomNumberPool, Randomizer theRandomizer){
-        return new AdditionMathGenerator(theRandomNumberPool,theRandomizer);
+    AdditionMathGenerator getAdditionMathGenerator(RandomNumberPool theRandomNumberPool,
+                                                   Randomizer theRandomizer,
+                                                   FormulaFormatter theFormulaFormatter){
+        return new AdditionMathGenerator(theRandomNumberPool,theRandomizer,theFormulaFormatter);
     }
 
 }

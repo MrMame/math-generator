@@ -7,6 +7,16 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Randomizer without returning double numbers
+ *
+ * The Random Number pool is a list of numbers, defined by its start and end number.
+ * Calling the getNumberFromPool() Function returns a random number and removes this number from the actual pool,
+ * so it couldn't be returned the next time getNumberFromPool() is called.
+ * If all numbers are taken out of the pool, the pool will reinit itself.
+ * Using the NumberPool will return random numbers, but ensures that no number is returned more then once until
+ * all other numbers from the pool are taken.
+ */
 @Component
 @Scope("prototype")
 public class RandomNumberPool

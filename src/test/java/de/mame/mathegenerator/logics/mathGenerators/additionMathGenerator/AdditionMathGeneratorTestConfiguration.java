@@ -1,5 +1,7 @@
 package de.mame.mathegenerator.logics.mathGenerators.additionMathGenerator;
 
+import de.mame.mathegenerator.logics.formatters.formula.FormulaFormatter;
+import de.mame.mathegenerator.logics.formatters.formulaMembers.RawFormatter;
 import de.mame.mathegenerator.logics.mathGenerators.AdditionMathGenerator;
 import de.mame.mathegenerator.logics.numberPools.RandomNumberPool;
 import de.mame.mathegenerator.logics.randomizers.Randomizer;
@@ -23,12 +25,17 @@ public class AdditionMathGeneratorTestConfiguration {
         return new SystemRandomizer();
     }
 
+    @Bean
+    @Scope("prototype")
+    public FormulaFormatter getRawFormulaFormatter() {
+        return new FormulaFormatter(new RawFormatter(),new RawFormatter());
+    }
 
 
     @Bean
     @Scope("prototype")
     AdditionMathGenerator getAdditionMathGenerator(){
-        return new AdditionMathGenerator(this.getRandomNumberPool(),this.getSystemRandomizer());
+        return new AdditionMathGenerator(this.getRandomNumberPool(),this.getSystemRandomizer(),this.getRawFormulaFormatter());
     }
 
 }

@@ -35,7 +35,9 @@ public class AdditionMathGeneratorUnitTest {
 
 
         ArrayList<Formula> testResults;
-        AdditionMathGenerator testObj = new AdditionMathGenerator(new UpCountingRandomNumberPool(),new OriginOnlyRandomizer());
+        AdditionMathGenerator testObj = new AdditionMathGenerator(new UpCountingRandomNumberPool(),
+                                                                  new OriginOnlyRandomizer(),
+                                                                    null);
         testObj.set_numberOfExercises(15);
         testObj.set_numberRangeStart(1);
         testObj.set_numberRangeEnd(100);

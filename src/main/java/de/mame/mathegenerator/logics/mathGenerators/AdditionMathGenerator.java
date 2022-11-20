@@ -1,5 +1,6 @@
 package de.mame.mathegenerator.logics.mathGenerators;
 
+import de.mame.mathegenerator.logics.formatters.formula.FormulaFormatter;
 import de.mame.mathegenerator.logics.numberPools.NumberPool;
 import de.mame.mathegenerator.logics.randomizers.Randomizer;
 import de.mame.mathegenerator.model.formulas.Formula;
@@ -21,6 +22,8 @@ public class AdditionMathGenerator
     private Integer _numberRangeEnd;
     private Randomizer _theRand;
     private NumberPool _theRandomNumberPool;
+    private FormulaFormatter _theFormulaFormatter;
+
 
     @Override
     public void set_numberOfExercises(Integer _numberOfExercises) {
@@ -51,9 +54,12 @@ public class AdditionMathGenerator
 
 
     @Autowired(required = false)
-    public AdditionMathGenerator(NumberPool theNumberPool, Randomizer theRandomizer) {
+    public AdditionMathGenerator(NumberPool theNumberPool,
+                                 Randomizer theRandomizer,
+                                 FormulaFormatter formulaFormatter) {
         this._theRandomNumberPool = theNumberPool;
         this._theRand = theRandomizer;
+        this._theFormulaFormatter = formulaFormatter;
     }
 
 
@@ -97,7 +103,7 @@ public class AdditionMathGenerator
 
             /* Randomly change numA and NumB position in formula. That will end
              in a more mixed formula look.*/
-            Formula theFormula = new Formula();
+            Formula theFormula = new Formula(this._theFormulaFormatter);
             if(this._theRand.nextInt(1,3) == 1){
                 theFormula.AddFormulaMember(new RealNumber(numA));
                 theFormula.AddFormulaMember(theAddMathOperator);
