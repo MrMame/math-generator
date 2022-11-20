@@ -9,19 +9,17 @@ import de.mame.mathegenerator.model.formulas.formulaMembers.numbers.Number;
 public class FormulaFormatter extends FormulaFormatterAbstract {
 
 
-    private Formula _theFormula;
 
     public FormulaFormatter(Formula Formula, MembersFormatter NumberFormatter, MembersFormatter OperatorFormatter) {
         super(NumberFormatter, OperatorFormatter);
-        this._theFormula = Formula;
     }
 
 
-    public String getFormattedString() {
+    public String getFormattedString(Formula formula) {
         StringBuilder theFormulaString = new StringBuilder();
         String formattedMember="";
         // Format Each Member of the Formula and add it to the return string
-        for(FormulaMember member:this._theFormula.GetFormulaMembers()){
+        for(FormulaMember member:formula.GetFormulaMembers()){
             // Each Type of Formulamember has its own format string
             if( member instanceof Number){
                 //formattedMember = String.format(this.FORMAT_STRING_NUMBER, ((Number) member).GetIntegerValue());
