@@ -1,5 +1,6 @@
 package de.mame.mathegenerator.model.formulas;
 
+import de.mame.mathegenerator.logics.formatters.formula.FormulaFormatter;
 import de.mame.mathegenerator.model.formulas.formulaMembers.FormulaMember;
 import de.mame.mathegenerator.model.formulas.formulaMembers.numbers.RealNumber;
 
@@ -10,23 +11,40 @@ import java.util.Random;
 
 public class Formula {
 
-    private static final String BLANKED_NUMBER_STRING = "___";
+    //private static final String BLANKED_NUMBER_STRING = "___";
 
     String _value;
     ArrayList<FormulaMember> _formulaMembers = new ArrayList<>();
+    FormulaFormatter _formulaFormatter;
 
+
+
+    public Formula(FormulaFormatter formulaFormatter){
+        this._formulaFormatter = formulaFormatter;
+    }
+
+    /**
+     * Add a formula member to the formula. Add the members in the right order.
+     * @param theFormulaMember Member to add to the formula
+     */
     public void AddFormulaMember(FormulaMember theFormulaMember){
         this._formulaMembers.add(theFormulaMember);
     }
+
+    /**
+     * Get all members of the formula
+     * @return List of all members of this formula
+     */
     public List<FormulaMember> GetFormulaMembers(){
         return Collections.unmodifiableList(this._formulaMembers);
     }
 
-    /*
-    * Return the Formula String, but with one random blank number.
-    * The printable exercises are to calculate the missing blank numbers.
+    /**
+     * Return the Formula String, but with one random blank number.
+     * The printable exercises are to calculate the missing blank numbers.
+     * @return Formatted formula
     * */
-    public String toStringWithRandomBlankNumber(){
+    public String GetFormattedFormula(){
         StringBuilder returnString = new StringBuilder();
         // Count existing numbers inside the formula
         Integer numberOfNumbers = countRealNumbers(this._formulaMembers);

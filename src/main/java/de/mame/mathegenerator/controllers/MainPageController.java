@@ -35,48 +35,48 @@ public class MainPageController {
         return "main-page";
     }
 
+
     @PostMapping("/")
     public String showMainPage(@Valid @ModelAttribute("theFormData") MainPageFormData theFormData,
                                BindingResult theBindingResult,Model model){
-
         /* Returns to Main Form if Inputvalidation has found some issues */
         if(theBindingResult.hasErrors()){return "main-page";}
-
-        model.addAttribute("theFormData",theFormData);
-
-        /* Request Formulas from Service. In cas of an Error, the returned formulas list is empty */
-        ArrayList<Formula> formulas = requestFormulasFromService(theFormData);
-
+        // OutComment : This line of code is unnecessary ? delete if possible
+        //model.addAttribute("theFormData",theFormData);
+        /*  Let the Service create some Formulas for the user.
+            Put them into the model.
+            In case of an Error, the returned formulas list is empty */
+        ArrayList<Formula> formulas = createFormulasWithService(theFormData);
         model.addAttribute("theFormulas", formulas);
-
         /* In case of an error, we return to the main page */
         if(formulas.size() > 0){
             return "result-page";
         }else{
             return "main-page";
         }
-
     }
 
-    private ArrayList<Formula> requestFormulasFromService(MainPageFormData theFormData) {
 
+    /**
+     *
+     * @param theFormData Formulardata from HTTP Request, containing the definitions for generating the formulas
+     * @return Generated formulas to show to the user
+     */
+    private ArrayList<Formula> createFormulasWithService(MainPageFormData theFormData) {
         ArrayList<Formula> formulas = new ArrayList<>();
-
         try {
-            formulas = this._formulasGeneratorService.CreateMixedFormulas(theFormData.getExercisesNumberRangeStart(),
+            formulas = this._formulasGeneratorService.GenerateFormulas(theFormData.getExercisesNumberRangeStart(),
                     theFormData.getExercisesNumberRangeEnd(),
                     theFormData.getNumberOfExercises(),
                     theFormData.getWithOperationsAdd(),
                     theFormData.getWithOperationsSub(),
                     theFormData.getWithOperationsMul(),
                     theFormData.getWithOperationsDiv());
-
         }catch(Exception e){
             System.out.println("Error while creating formulas. "
                     + e.toString());
             formulas.clear();       // In case of an error, all formulas are invalid and will be deleted
         }
-
         return formulas;
     }
 

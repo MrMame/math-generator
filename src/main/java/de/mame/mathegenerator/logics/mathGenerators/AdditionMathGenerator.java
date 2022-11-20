@@ -7,13 +7,10 @@ import de.mame.mathegenerator.model.formulas.formulaMembers.mathOperators.AddMat
 import de.mame.mathegenerator.model.formulas.formulaMembers.mathOperators.EqualsMathOperator;
 import de.mame.mathegenerator.model.formulas.formulaMembers.numbers.RealNumber;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class AdditionMathGenerator
@@ -22,9 +19,7 @@ public class AdditionMathGenerator
     private Integer _numberOfExercises;
     private Integer _numberRangeStart;
     private Integer _numberRangeEnd;
-
     private Randomizer _theRand;
-
     private NumberPool _theRandomNumberPool;
 
     @Override
@@ -77,10 +72,10 @@ public class AdditionMathGenerator
             this._numberRangeStart = tmp;
         }
         // create list of string
-        return createListOfFormulas();
+        return generateFormulas();
     }
 
-    private List<Formula> createListOfFormulas() {
+    private List<Formula> generateFormulas() {
         List<Formula> theFormulas = new ArrayList<>();
 
         Integer numA;
@@ -90,7 +85,6 @@ public class AdditionMathGenerator
         EqualsMathOperator theEqualMathOperator = new EqualsMathOperator();
 
         Integer randomizerRangeEndNumber = this._numberRangeEnd +1;
-
 
         this._theRandomNumberPool.initPool(this._numberRangeStart, this._numberRangeEnd);
 

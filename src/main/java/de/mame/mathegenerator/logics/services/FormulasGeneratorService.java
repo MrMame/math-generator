@@ -31,16 +31,25 @@ public class FormulasGeneratorService {
         this._theGroupOfMathGenerators = theGroupOfMathGenerators;
         this._theMultiplicationMathGenerator = theMultiplicationMathGenerator;
         this._theSubtractionMathGenerator = theSubtractionMathGenerator;
-
-
     }
 
 
-    public ArrayList<Formula> CreateMixedFormulas(Integer startNumberOfFormulasRange,
-                                             Integer endNumberOfFormulasRange,
-                                             Integer numberOfFormulas,
-                                             boolean useAddition,boolean useSubtraction,
-                                             boolean useMultiplication,boolean useDivision)
+    /**
+     * Generates the formulas for the user for print out.
+     * @param startNumberOfFormulasRange Start number of calculation range used by the formulas
+     * @param endNumberOfFormulasRange Endnumber of calculation range used by the formulas
+     * @param numberOfFormulas Number of formulas that will be generated
+     * @param useAddition True if formulas should contain addition
+     * @param useSubtraction True if formulas should contain subtraction
+     * @param useMultiplication True if formulas should contain multiplication
+     * @param useDivision True if formulas should contain division
+     * @return List of generated formulas for printout
+     */
+    public ArrayList<Formula> GenerateFormulas(Integer startNumberOfFormulasRange,
+                                               Integer endNumberOfFormulasRange,
+                                               Integer numberOfFormulas,
+                                               boolean useAddition, boolean useSubtraction,
+                                               boolean useMultiplication, boolean useDivision)
     {
         if(startNumberOfFormulasRange==null)throw new IllegalArgumentException("Must not be null");
         if(endNumberOfFormulasRange==null)throw new IllegalArgumentException("Must not be null");
@@ -56,59 +65,49 @@ public class FormulasGeneratorService {
                                                                     useSubtraction,
                                                                     useMultiplication,
                                                                     useDivision);
-
-        
         /* Select random formulas randomly from the mathgeneratorsformulas list  */
-        ArrayList<Formula> returnFormulas = this.CreateRandomFormulaListFromGeneratorsFormulas(numberOfFormulas,
-                                                                                                allFormulaLists);
-
+        ArrayList<Formula> returnFormulas
+                = this.CreateRandomizedList(numberOfFormulas,allFormulaLists);
         return returnFormulas;
-
     }
 
 
-    public List<Formula> CreateAdditionFormulas(Integer startNumberOfFormulasRange,
+    private List<Formula> CreateAdditionFormulas(Integer startNumberOfFormulasRange,
                                                  Integer endNumberOfFormulasRange,
                                                  Integer numberOfFormulas){
-
         this._theAdditionMathGenerator.set_numberRangeStart(startNumberOfFormulasRange);
         this._theAdditionMathGenerator.set_numberRangeEnd(endNumberOfFormulasRange);
         this._theAdditionMathGenerator.set_numberOfExercises(numberOfFormulas);
-
         return this._theAdditionMathGenerator.createExercises();
     }
 
 
-    public List<Formula> CreateSubtractionFormulas(Integer startNumberOfFormulasRange,
+    private List<Formula> CreateSubtractionFormulas(Integer startNumberOfFormulasRange,
                                                 Integer endNumberOfFormulasRange,
                                                 Integer numberOfFormulas){
-
         this._theSubtractionMathGenerator.set_numberRangeStart(startNumberOfFormulasRange);
         this._theSubtractionMathGenerator.set_numberRangeEnd(endNumberOfFormulasRange);
         this._theSubtractionMathGenerator.set_numberOfExercises(numberOfFormulas);
-
         return this._theSubtractionMathGenerator.createExercises();
     }
 
-    public List<Formula> CreateMultiplicationFormulas(Integer startNumberOfFormulasRange,
+
+    private List<Formula> CreateMultiplicationFormulas(Integer startNumberOfFormulasRange,
                                                    Integer endNumberOfFormulasRange,
                                                    Integer numberOfFormulas){
-
         this._theMultiplicationMathGenerator.set_numberRangeStart(startNumberOfFormulasRange);
         this._theMultiplicationMathGenerator.set_numberRangeEnd(endNumberOfFormulasRange);
         this._theMultiplicationMathGenerator.set_numberOfExercises(numberOfFormulas);
-
         return this._theMultiplicationMathGenerator.createExercises();
     }
 
-    public List<Formula> CreateDivisionFormulas(Integer startNumberOfFormulasRange,
+
+    private List<Formula> CreateDivisionFormulas(Integer startNumberOfFormulasRange,
                                                       Integer endNumberOfFormulasRange,
                                                       Integer numberOfFormulas){
-
         this._theDivisionMathGenerator.set_numberRangeStart(startNumberOfFormulasRange);
         this._theDivisionMathGenerator.set_numberRangeEnd(endNumberOfFormulasRange);
         this._theDivisionMathGenerator.set_numberOfExercises(numberOfFormulas);
-
         return this._theDivisionMathGenerator.createExercises();
     }
 
@@ -118,48 +117,45 @@ public class FormulasGeneratorService {
                                                                   Integer numberOfFormulas,
                                                                   boolean useAddition, boolean useSubtraction,
                                                                   boolean useMultiplication, boolean useDivision) {
-
-
-
-        List<List<Formula>> allFormulaLists = new ArrayList<>();
-
+        //
+        List<List<Formula>> formulaContainer = new ArrayList<>();
         /* Create Formula lists for each selected MathGenerator Type */
         if(useAddition) {
             List<Formula> additionFormulas = this.CreateAdditionFormulas(startNumberOfFormulasRange,
                     endNumberOfFormulasRange,
                     numberOfFormulas);
-            allFormulaLists.add(additionFormulas);
+            formulaContainer.add(additionFormulas);
         }
         if(useSubtraction) {
             List<Formula> subtractionFormulas = this.CreateSubtractionFormulas(startNumberOfFormulasRange,
                     endNumberOfFormulasRange,
                     numberOfFormulas);
-            allFormulaLists.add(subtractionFormulas);
+            formulaContainer.add(subtractionFormulas);
         }
         if(useDivision) {
             List<Formula> divisionFormulas = this.CreateDivisionFormulas(startNumberOfFormulasRange,
                     endNumberOfFormulasRange,
                     numberOfFormulas);
-            allFormulaLists.add(divisionFormulas);
+            formulaContainer.add(divisionFormulas);
         }
         if(useMultiplication) {
             List<Formula> multiplicationFormulas = this.CreateMultiplicationFormulas(startNumberOfFormulasRange,
                     endNumberOfFormulasRange,
                     numberOfFormulas);
-            allFormulaLists.add(multiplicationFormulas);
+            formulaContainer.add(multiplicationFormulas);
         }
-        return allFormulaLists;
+        return formulaContainer;
     }
 
 
-    private ArrayList<Formula> CreateRandomFormulaListFromGeneratorsFormulas(int numberOfFormulas, List<List<Formula>> allFormulaLists) {
+    private ArrayList<Formula> CreateRandomizedList(int numberOfFormulas, List<List<Formula>> formulaContainer) {
         if(numberOfFormulas<=0)throw new IllegalArgumentException("Number of Formulas must be greater then 0");
-        if(allFormulaLists==null)throw new IllegalArgumentException("AllFormulasList must not be null");
+        if(formulaContainer==null)throw new IllegalArgumentException("AllFormulasList must not be null");
 
         ArrayList<Formula> returnFormulas = new ArrayList<Formula>();
 
         /* Return Empty List if no MathgeneratorList is available*/
-        if(allFormulaLists.isEmpty())return returnFormulas;
+        if(formulaContainer.isEmpty())return returnFormulas;
 
         Random theRand = new Random(1);
         int idxRandomFormulaNumber;int idxRandomMathgeneratorNumber;
@@ -167,8 +163,8 @@ public class FormulasGeneratorService {
         Formula randomFormula;
         for(i=0;i<numberOfFormulas;i++){
             idxRandomFormulaNumber = theRand.nextInt(numberOfFormulas);
-            idxRandomMathgeneratorNumber = theRand.nextInt(allFormulaLists.size());
-            randomFormula = allFormulaLists.get(idxRandomMathgeneratorNumber).get(idxRandomFormulaNumber);
+            idxRandomMathgeneratorNumber = theRand.nextInt(formulaContainer.size());
+            randomFormula = formulaContainer.get(idxRandomMathgeneratorNumber).get(idxRandomFormulaNumber);
             returnFormulas.add(randomFormula);
         }
         return returnFormulas;
