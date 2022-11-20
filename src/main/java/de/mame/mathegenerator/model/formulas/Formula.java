@@ -45,9 +45,18 @@ public class Formula {
      * @return Formatted formula
     * */
     public String GetFormattedFormula(){
+        // If formula has no RealNumbers inside its members something did go really wrong.
+        Integer numberOfNumbers = countRealNumbersInMembers(this._formulaMembers);
+        if(numberOfNumbers <= 0){throw new IllegalArgumentException("There should be always a number inside the formula");}
+        // returned the formatted formula
+        return this._formulaFormatter.getFormattedString(this);
+    }
+
+    /*
+    public String OBSOLETE_GetFormattedFormula(){
         StringBuilder returnString = new StringBuilder();
         // Count existing numbers inside the formula
-        Integer numberOfNumbers = countRealNumbers(this._formulaMembers);
+        Integer numberOfNumbers = countRealNumbersInMembers(this._formulaMembers);
         // Exception. There has to be always a number inside th formula
         if(numberOfNumbers <= 0){throw new IllegalArgumentException("There should be always a number inside the formula");}
 
@@ -71,20 +80,20 @@ public class Formula {
 
         return returnString.toString();
     }
+    */
+
 
     @Override
     public String toString() {
         StringBuilder returnString = new StringBuilder();
-
         for(FormulaMember theMember: this._formulaMembers){
             returnString.append(theMember.GetCharacter());
         }
-
         return returnString.toString();
     }
 
 
-    private Integer countRealNumbers(ArrayList<FormulaMember> theList){
+    private Integer countRealNumbersInMembers(ArrayList<FormulaMember> theList){
         Integer cnt=0;
         for(FormulaMember theMember:theList){
             if(theMember instanceof RealNumber){
